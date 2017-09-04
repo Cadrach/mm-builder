@@ -42,14 +42,14 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         $scope.selectCard = function(card){
             var id = card.pageid;
             var groupBy = _.chain($scope.selection).groupBy(function(n){return n}).mapObject(function(a){return a.length}).value();
-            var hasWildCard = _.filter(groupBy, function(a){return a >=3}).length > 0;
+            var hasWildCard = _.reduce(groupBy, function(memo, v){return v-1+memo;}, 0) >= 2;
 
             //Verification before adding the card
             if($scope.selection.length >= 10){
                 throw "MAX CARDS";
             }
-            else if(hasWildCard && groupBy[id] >= 2){
-                throw "ALREADY A WILDCARD"
+            else if(hasWildCard && groupBy[id]){
+                throw "MAX WILDCARDS";
             }
 
             //Add the card
