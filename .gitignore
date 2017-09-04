@@ -1,3 +1,4 @@
 .idea
 sources/vendor
 sources/composer.phar
+bower_components
