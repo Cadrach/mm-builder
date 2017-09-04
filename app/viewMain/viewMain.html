@@ -1,3 +1,1 @@
-<div ng-repeat="card in cards">
-    {{card.name}}
-</div>
+<card ng-repeat="card in cards|orderBy:'manacost'" value="card"></card>

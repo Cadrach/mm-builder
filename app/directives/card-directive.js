@@ -19,20 +19,17 @@
  */
 'use strict';
 
-// Declare app level module which depends on views, and components
-angular.module('appMmBuilder', [
-    'ngRoute',
-    'ui.bootstrap',
-    'ui.sortable',
-    'ui.select',
+angular.module('appMmBuilder.card-directive', [])
 
-    'LocalStorageModule',
-
-    'appMmBuilder.viewMain',
-    'appMmBuilder.card-directive'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/'});
+.directive('card', ['$sce', function($sce) {
+    return {
+        link: function(scope, elmt){
+        },
+        restrict: 'E',
+        // transclude: true,
+        scope: {
+            card: '=value'
+        },
+        templateUrl: 'app/templates/directive-card.html?v=' + codeVersion
+    }
 }]);

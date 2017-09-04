@@ -1,0 +1,47 @@
+
+card{
+  margin: 0;
+
+  //Rarities
+  .card-rarity-Regular{outline-color: #7f7f7f;}
+  .card-rarity-Common{outline-color: #82b577;}
+  .card-rarity-Rare{outline-color: #3d77c6;}
+  .card-rarity-Supreme{outline-color: #a055a0;}
+  .card-rarity-Legendary{outline-color: #c0a659;}
+
+
+  &>div{
+    width: 61px;
+    height: 72px;
+    background-size: 100%;
+    display: block;
+    float: left;
+    margin: 8px 6px;
+    position: relative;
+    outline: 3px solid red;
+    border: 2px solid #18181e;
+  }
+  .card-name{
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    overflow: hidden;
+    height: 14px;
+    width: 100%;
+    text-align: center;
+  }
+  .card-cost{
+    position: absolute;
+    top: -8px;
+    right: 2px;
+    background: #4b24b8;
+    border: 2px solid #d5aafb;
+    color: #fff;
+    height: 21px;
+    width: 21px;
+    text-align: center;
+    z-index: 2;
+  }
+}
