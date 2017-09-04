@@ -36,4 +36,36 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
     function($scope, $timeout, $uibModal, $location, localStorageService, cards) {
 
         $scope.cards = cards;
+        $scope.cardsById = _.indexBy(cards, 'pageid');
+        $scope.selection = [];
+
+        $scope.selectCard = function(card){
+            var id = card.pageid;
+            var groupBy = _.chain($scope.selection).groupBy(function(n){return n}).mapObject(function(a){return a.length}).value();
+            var hasWildCard = _.filter(groupBy, function(a){return a >=3}).length > 0;
+
+            //Verification before adding the card
+            if($scope.selection.length >= 10){
+                throw "MAX CARDS";
+            }
+            else if(hasWildCard && groupBy[id] >= 2){
+                throw "ALREADY A WILDCARD"
+            }
+
+            //Add the card
+            $scope.selection.push(id);
+
+            //Sort the card list
+            $scope.selection.sort(function(a,b){
+                a = $scope.cardsById[a];
+                b = $scope.cardsById[b];
+                if(a.manacost>b.manacost) return 1;
+                if(a.manacost<b.manacost) return -1;
+                if(a.name>b.name) return 1;
+            })
+        }
+
+        $scope.removeCard = function(position){
+            $scope.selection.splice(position, 1);
+        }
 }]);

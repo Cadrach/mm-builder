@@ -1,1 +1,5 @@
-<card ng-repeat="card in cards|orderBy:'manacost'" value="card"></card>
+<div class="card-selection">
+    <card ng-repeat="s in selection track by $index" value="cardsById[s]" ng-click="removeCard($index)"></card>
+</div>
+
+<card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
