@@ -93,6 +93,9 @@ foreach($list as $page){
             $card['attackspeed'] = floatval($matches[1]);
         }
     }
+    if(isset($card['range']) && $card['range'] == 'Melee'){
+        $card['range'] = 0;
+    }
 
     //Add to cards list
     $cards[] = $card;
