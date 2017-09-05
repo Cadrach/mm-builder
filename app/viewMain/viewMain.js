@@ -38,22 +38,40 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         $scope.cards = cards;
         $scope.cardsById = _.indexBy(cards, 'pageid');
         $scope.selection = [];
+        $scope.wildCardsMax = 2;
+        $scope.wildCardsUsed = 0;
+
+        /**
+         * Compute the number of WildCard used
+         */
+        function updateWildCardUsed(){
+            //Update Wildcard used number
+            var newGroupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
+            $scope.wildCardsUsed = _.reduce(newGroupBy, function(memo, v){return v-1+memo;}, 0);
+        }
 
         $scope.selectCard = function(card){
             var id = card.pageid;
+
+            //Group by count
             var groupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
-            var hasWildCard = _.reduce(groupBy, function(memo, v){return v-1+memo;}, 0) >= 2;
+
+            //Update wildcard number
+            var hasMaxWildCard = $scope.wildCardsUsed >= $scope.wildCardsMax;
 
             //Verification before adding the card
             if($scope.selection.length >= 10){
                 throw "MAX CARDS";
             }
-            else if(hasWildCard && groupBy[id]){
+            else if(hasMaxWildCard && groupBy[id]){
                 throw "MAX WILDCARDS";
             }
 
             //Add the card
             $scope.selection.push({id:id});
+
+            //Update usage of wildcards
+            updateWildCardUsed();
 
             //Sort the card list
             $scope.selection.sort(function(a,b){
@@ -67,5 +85,6 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 
         $scope.removeCard = function(position){
             $scope.selection.splice(position, 1);
+            updateWildCardUsed();
         }
 }]);
