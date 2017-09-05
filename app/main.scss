@@ -1,9 +1,10 @@
 $icon-font-path: '../bower_components/bootstrap-sass/assets/fonts/bootstrap/';
-$tooltip-bg: #0b3240;
+$popover-bg: #15142c;
+$tooltip-bg: $popover-bg;
 $popover-border-color: #dabf7f;
 $popover-arrow-color: $popover-border-color;
 $dropdown-border: $popover-border-color;
-$list-group-bg: rgba(0,102,138,1);
+$list-group-bg: #15142c;
 $list-group-hover-bg: $popover-border-color;
 $list-group-border: $popover-border-color;
 

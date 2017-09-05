@@ -4543,7 +4543,7 @@ a.thumbnail.active {
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #00668a;
+  background-color: #15142c;
   border: 1px solid #dabf7f; }
   .list-group-item:first-child {
     border-top-right-radius: 4px;
@@ -5223,7 +5223,7 @@ button.close {
   padding: 3px 8px;
   color: #fff;
   text-align: center;
-  background-color: #0b3240;
+  background-color: #15142c;
   border-radius: 4px; }
 
 .tooltip-arrow {
@@ -5238,49 +5238,49 @@ button.close {
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #0b3240; }
+  border-top-color: #15142c; }
 .tooltip.top-left .tooltip-arrow {
   bottom: 0;
   right: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #0b3240; }
+  border-top-color: #15142c; }
 .tooltip.top-right .tooltip-arrow {
   bottom: 0;
   left: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #0b3240; }
+  border-top-color: #15142c; }
 .tooltip.right .tooltip-arrow {
   top: 50%;
   left: 0;
   margin-top: -5px;
   border-width: 5px 5px 5px 0;
-  border-right-color: #0b3240; }
+  border-right-color: #15142c; }
 .tooltip.left .tooltip-arrow {
   top: 50%;
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
-  border-left-color: #0b3240; }
+  border-left-color: #15142c; }
 .tooltip.bottom .tooltip-arrow {
   top: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #0b3240; }
+  border-bottom-color: #15142c; }
 .tooltip.bottom-left .tooltip-arrow {
   top: 0;
   right: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #0b3240; }
+  border-bottom-color: #15142c; }
 .tooltip.bottom-right .tooltip-arrow {
   top: 0;
   left: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #0b3240; }
+  border-bottom-color: #15142c; }
 
 .popover {
   position: absolute;
@@ -5306,7 +5306,7 @@ button.close {
   word-spacing: normal;
   word-wrap: normal;
   font-size: 14px;
-  background-color: #fff;
+  background-color: #15142c;
   background-clip: padding-box;
   border: 1px solid #ccc;
   border: 1px solid #dabf7f;
@@ -5326,8 +5326,8 @@ button.close {
   margin: 0;
   padding: 8px 14px;
   font-size: 14px;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ebebeb;
+  background-color: #100f21;
+  border-bottom: 1px solid #080710;
   border-radius: 5px 5px 0 0; }
 
 .popover-content {

@@ -2,4 +2,7 @@
     <card class="am-fade" ng-repeat="s in selection" value="cardsById[s.id]" ng-click="removeCard($index)"></card>
 </div>
 
-<card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
+<div class="card-list">
+    <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
+    <div class="clearfix"></div>
+</div>
