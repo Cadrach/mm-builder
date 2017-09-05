@@ -22,6 +22,7 @@
 // Declare app level module which depends on views, and components
 angular.module('appMmBuilder', [
     'ngRoute',
+    'ngAnimate',
     'ui.bootstrap',
     'ui.sortable',
     'ui.select',

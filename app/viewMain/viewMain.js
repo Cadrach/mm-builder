@@ -41,7 +41,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 
         $scope.selectCard = function(card){
             var id = card.pageid;
-            var groupBy = _.chain($scope.selection).groupBy(function(n){return n}).mapObject(function(a){return a.length}).value();
+            var groupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
             var hasWildCard = _.reduce(groupBy, function(memo, v){return v-1+memo;}, 0) >= 2;
 
             //Verification before adding the card
@@ -53,12 +53,12 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             }
 
             //Add the card
-            $scope.selection.push(id);
+            $scope.selection.push({id:id});
 
             //Sort the card list
             $scope.selection.sort(function(a,b){
-                a = $scope.cardsById[a];
-                b = $scope.cardsById[b];
+                a = $scope.cardsById[a.id];
+                b = $scope.cardsById[b.id];
                 if(a.manacost>b.manacost) return 1;
                 if(a.manacost<b.manacost) return -1;
                 if(a.name>b.name) return 1;
