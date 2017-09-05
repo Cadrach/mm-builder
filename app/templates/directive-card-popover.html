@@ -1,0 +1,28 @@
+<div class="card-popover">
+    <div ng-show="card.count">
+        <div class="icon-count"></div>{{card.count}}
+    </div>
+    <div ng-show="card.targets">
+        <div class="icon-targets"></div>{{card.targets}}
+    </div>
+    <div ng-show="card.health">
+        <div class="icon-health"></div>{{card.health}}
+    </div>
+    <div ng-show="card.attackspeed">
+        <div class="icon-attackspeed"></div>{{card.attackspeed/1000}}
+    </div>
+    <div ng-show="card.damage">
+        <div class="icon-damage"></div>{{card.damage}} <small>({{card.dps|number}}/s)</small>
+    </div>
+    <div ng-show="card.range">
+        <div class="icon-range"></div>
+        <span ng-show="card.range>100">{{card.range/100}}</span>
+        <span ng-show="card.range<=100">Melee</span>
+    </div>
+    <div ng-show="card.speed">
+        <div class="icon-speed"></div>{{card.speed}}
+    </div>
+    <div ng-show="card.duration">
+        <div class="icon-duration"></div>{{card.duration}}s
+    </div>
+</div>

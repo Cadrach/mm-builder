@@ -36,7 +36,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 .controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'cards',
     function($scope, $timeout, $uibModal, $location, localStorageService, cards) {
 
-        var cardUniqueId = " ID";
+        var cardUniqueId = "ID";
 
         $scope.cards = cards;
         $scope.cardsById = _.indexBy(cards, cardUniqueId);

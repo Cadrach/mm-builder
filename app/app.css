@@ -1,3 +1,59 @@
+.icon-attackspeed {
+  background-image: url("images/icon-attackspeed.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-count {
+  background-image: url("images/icon-count.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-damage {
+  background-image: url("images/icon-damage.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-duration {
+  background-image: url("images/icon-duration.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-health {
+  background-image: url("images/icon-health.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-range {
+  background-image: url("images/icon-range.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-speed {
+  background-image: url("images/icon-speed.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
+.icon-targets {
+  background-image: url("images/icon-targets.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
 .card-selection {
   height: 100px;
   margin-top: 10px;
@@ -46,5 +102,20 @@ card {
     width: 21px;
     text-align: center;
     z-index: 2; }
+
+.card-popover {
+  width: 200px; }
+  .card-popover > div {
+    width: 50%;
+    float: left;
+    line-height: 24px;
+    height: 24px; }
+  .card-popover [class*="icon-"] {
+    float: left;
+    height: 24px;
+    width: 24px;
+    margin-right: 3px; }
+  .card-popover small {
+    font-size: 10px; }
 
 /*# sourceMappingURL=app.css.map */

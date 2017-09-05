@@ -20,8 +20,8 @@ $keys = [
 ];
 
 //What we should convert to numbers
-$numbers = [' ID', 'manacost', 'count', 'health', 'speed', 'attackspeed', 'damage', 'range', 'dps'];
-$booleans = ['isRanged', 'Flying', 'HitsFlying', 'AttackOnlyStationary'];
+$numbers = ['ID', 'manacost', 'count', 'health', 'speed', 'attackspeed', 'damage', 'range', 'dps'];
+$booleans = ['isRanged', 'Flying', 'HitsFlying', 'AttackOnlyStationary', 'isAOE'];
 
 /**
  * FIRST WE READ ORIGINAL CARDS INFORMATION
@@ -40,6 +40,9 @@ foreach($officialCards as &$card){
         if(isset($card[$field])){
             $card[$field] = $card[$field] !== 'False';
         }
+    }
+    if(isset($card['count']) && $card['count'] === 0){
+        $card['count'] = 1;
     }
 }
 

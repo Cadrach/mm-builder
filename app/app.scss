@@ -1,8 +1,20 @@
+
+@each $name in 'attackspeed' 'count' 'damage' 'duration' 'health' 'range' 'speed' 'targets'{
+  .icon-#{$name} {
+    background-image: url('images/icon-#{$name}.png');
+    height: 64px;
+    width: 64px;
+    display: inline-block;
+    background-size: 100%;
+  }
+}
+
 .card-selection{
   height: 100px;
   margin-top: 10px;
   margin-bottom: 40px;
 }
+
 card{
   margin: 0;
 
@@ -48,4 +60,21 @@ card{
     text-align: center;
     z-index: 2;
   }
+}
+
+.card-popover{
+  width: 200px;
+  &>div{
+    width: 50%;
+    float: left;
+    line-height: 24px;
+    height: 24px;
+  }
+  [class*="icon-"]{
+    float: left;
+    height: 24px;
+    width: 24px;
+    margin-right: 3px;
+  }
+  small{font-size: 10px;}
 }

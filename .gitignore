@@ -3,3 +3,4 @@ sources/vendor
 sources/composer.phar
 bower_components
 app/*.css.map
+app/images/Corel Auto-Preserve
