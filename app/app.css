@@ -54,6 +54,13 @@
   display: inline-block;
   background-size: 100%; }
 
+.icon-radius {
+  background-image: url("images/icon-radius.png");
+  height: 64px;
+  width: 64px;
+  display: inline-block;
+  background-size: 100%; }
+
 .card-selection {
   height: 100px;
   margin-top: 10px;

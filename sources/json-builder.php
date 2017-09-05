@@ -17,6 +17,9 @@ $keys = [
     'damage',
     'range',
     'speed',
+    'duration',
+    'delay',
+    'radius',
 ];
 
 //What we should convert to numbers
@@ -31,11 +34,23 @@ $officialCards = \GuzzleHttp\json_decode(file_get_contents('cardsOfficial.json')
 
 //Proper field typing
 foreach($officialCards as &$card){
+
+    //Fix case for key fields
+    foreach($card as $key=>$value){
+        if($key != strtolower($key) && in_array(strtolower($key), $keys)){
+            $card[strtolower($key)] = $value;
+            unset($card[$key]);
+        }
+    }
+
+    //Fix numbers
     foreach($numbers as $field){
         if(isset($card[$field])){
             $card[$field] = floatval($card[$field]);
         }
     }
+
+    //Fix booleans
     foreach($booleans as $field){
         if(isset($card[$field])){
             $card[$field] = $card[$field] !== 'False';
@@ -44,6 +59,7 @@ foreach($officialCards as &$card){
     if(isset($card['count']) && $card['count'] === 0){
         $card['count'] = 1;
     }
+
 }
 
 $officialCards = collect($officialCards)->keyBy(function($card){return strtolower($card['name']);})->toArray();
@@ -117,6 +133,7 @@ foreach($list as $page){
     //Add specific keys
     $card['pageid'] = $data['pageid'];
     $card['image'] = $data['thumbnail']['source'];
+    if(isset($fieldsFound['targets'])) $card['targets'] = $fieldsFound['targets'];
 
     //Rework some stats
     if(isset($card['damage'])){

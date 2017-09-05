@@ -3,16 +3,18 @@
         <div class="icon-count"></div>{{card.count}}
     </div>
     <div ng-show="card.targets">
-        <div class="icon-targets"></div>{{card.targets}}
+        <div class="icon-targets"></div>
+        <span ng-show="card.targets == 'Ground'">Ground</span>
+        <span ng-show="card.targets == 'Ground & Air'">Gr. & Air</span>
     </div>
     <div ng-show="card.health">
         <div class="icon-health"></div>{{card.health}}
     </div>
     <div ng-show="card.attackspeed">
-        <div class="icon-attackspeed"></div>{{card.attackspeed/1000}}
+        <div class="icon-attackspeed"></div>{{card.attackspeed/1000}}s
     </div>
     <div ng-show="card.damage">
-        <div class="icon-damage"></div>{{card.damage}} <small>({{card.dps|number}}/s)</small>
+        <div class="icon-damage"></div>{{card.damage}} <small ng-show="card.dps">({{(card.dps|number:2)*1}}/s)</small>
     </div>
     <div ng-show="card.range">
         <div class="icon-range"></div>
@@ -23,6 +25,13 @@
         <div class="icon-speed"></div>{{card.speed}}
     </div>
     <div ng-show="card.duration">
-        <div class="icon-duration"></div>{{card.duration}}s
+        <div class="icon-duration"></div>{{card.duration/1000}}s
     </div>
+    <div ng-show="card.lifeTime">
+        <div class="icon-duration"></div>{{card.lifeTime}}s
+    </div>
+    <div ng-show="card.radius">
+        <div class="icon-radius"></div>{{card.radius/1000}}
+    </div>
+    <span class="clearfix"></span>
 </div>

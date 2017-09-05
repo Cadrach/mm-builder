@@ -1,5 +1,5 @@
 
-@each $name in 'attackspeed' 'count' 'damage' 'duration' 'health' 'range' 'speed' 'targets'{
+@each $name in 'attackspeed' 'count' 'damage' 'duration' 'health' 'range' 'speed' 'targets' 'radius'{
   .icon-#{$name} {
     background-image: url('images/icon-#{$name}.png');
     height: 64px;
