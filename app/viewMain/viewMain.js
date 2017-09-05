@@ -22,9 +22,10 @@
 angular.module('appMmBuilder.viewMain', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/:hash?', {
+    $routeProvider.when('/', {
         templateUrl: 'app/viewMain/viewMain.html?v=' + codeVersion,
         controller: 'ViewMainCtrl',
+        reloadOnSearch: false,
         resolve: {
             cards: function($http){
                 return $http.get('sources/cards.json').then(function(d){return d.data});
@@ -35,8 +36,10 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 .controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'cards',
     function($scope, $timeout, $uibModal, $location, localStorageService, cards) {
 
+        var cardUniqueId = " ID";
+
         $scope.cards = cards;
-        $scope.cardsById = _.indexBy(cards, 'pageid');
+        $scope.cardsById = _.indexBy(cards, cardUniqueId);
         $scope.selection = [];
         $scope.wildCardsMax = 2;
         $scope.wildCardsUsed = 0;
@@ -50,8 +53,12 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             $scope.wildCardsUsed = _.reduce(newGroupBy, function(memo, v){return v-1+memo;}, 0);
         }
 
+        function updateUrl(){
+            $location.search('deck', btoa(_.map($scope.selection, function(v){return v.id.toString()}).join('|')));
+        }
+
         $scope.selectCard = function(card){
-            var id = card.pageid;
+            var id = card[cardUniqueId];
 
             //Group by count
             var groupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
@@ -81,10 +88,28 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 if(a.manacost<b.manacost) return -1;
                 if(a.name>b.name) return 1;
             })
+
+            //Update our URL
+            updateUrl();
         }
 
         $scope.removeCard = function(position){
             $scope.selection.splice(position, 1);
             updateWildCardUsed();
+            updateUrl();
         }
-}]);
+
+        /**
+         * BOOTSTRAP
+         */
+        var deck = $location.search().deck;
+        try{
+            if(deck){
+                atob(deck).split('|').forEach(function(id){
+                    $scope.selectCard($scope.cardsById[id]);
+                });
+            }
+        }catch(e){
+            console.error("UNABLE TO READ DECK: " + e);
+        }
+    }]);

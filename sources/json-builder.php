@@ -3,17 +3,9 @@ require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
-$client = new Client([
-    // Base URI is used with relative requests
-    'base_uri' => 'https://minionmasters.gamepedia.com/api.php',
-    // You can set any number of default request options.
-    'timeout'  => 5.0,
-]);
-
 //List of keys we track on cards
 $keys = [
     'name',
-    //'image',
     'manacost',
     'rarity',
     'type',
@@ -28,7 +20,42 @@ $keys = [
 ];
 
 //What we should convert to numbers
-$numbers = ['manacost', 'count', 'health', 'speed'];
+$numbers = [' ID', 'manacost', 'count', 'health', 'speed', 'attackspeed', 'damage', 'range', 'dps'];
+$booleans = ['isRanged', 'Flying', 'HitsFlying', 'AttackOnlyStationary'];
+
+/**
+ * FIRST WE READ ORIGINAL CARDS INFORMATION
+ */
+//Original file reading
+$officialCards = \GuzzleHttp\json_decode(file_get_contents('cardsOfficial.json'), true);
+
+//Proper field typing
+foreach($officialCards as &$card){
+    foreach($numbers as $field){
+        if(isset($card[$field])){
+            $card[$field] = floatval($card[$field]);
+        }
+    }
+    foreach($booleans as $field){
+        if(isset($card[$field])){
+            $card[$field] = $card[$field] !== 'False';
+        }
+    }
+}
+
+$officialCards = collect($officialCards)->keyBy(function($card){return strtolower($card['name']);})->toArray();
+
+//var_dump($cards); die();
+
+/**
+ * NOW WE UPDATE FROM THE WIKI TO AT LEAST GET IMAGES
+ */
+$client = new Client([
+    // Base URI is used with relative requests
+    'base_uri' => 'https://minionmasters.gamepedia.com/api.php',
+    // You can set any number of default request options.
+    'timeout'  => 5.0,
+]);
 
 //Get list of cards
 $response = $client->get('',[
@@ -42,9 +69,6 @@ $list = \GuzzleHttp\json_decode($response->getBody()->getContents(), true)['quer
 //Loop on each card to get its information
 $cards = [];
 foreach($list as $page){
-
-    //Create card
-    $card = [];
 
     $response = $client->get('',[
         'query'=> [
@@ -61,20 +85,31 @@ foreach($list as $page){
     //Content text
     $text = $data['revisions'][0]['*'];
 
-    //
+    //Analyse content
     preg_match_all('/\|(.*)=(.*)/i', $text, $matches);
 
-    //Add common keys
+    //Associate matches
+    $fieldsFound = [];
     foreach($matches[1] as $id=>$key){
         if(in_array($key, $keys)){
             if(in_array($key, $numbers)){
-                $card[$key] = floatval($matches[2][$id]);
+                $fieldsFound[$key] = floatval($matches[2][$id]);
             }
             else{
-                $card[$key] = trim($matches[2][$id]);
+                $fieldsFound[$key] = trim($matches[2][$id]);
             }
         }
     }
+
+    //Check card existence in official cards
+    $name = strtolower($fieldsFound['name']);
+    if( ! isset($officialCards[$name])){
+        var_dump($fieldsFound);
+        throw new \Exception('Unknow card: ' . $name);
+    }
+
+    //Create card
+    $card = $officialCards[$name];
 
     //Add specific keys
     $card['pageid'] = $data['pageid'];
