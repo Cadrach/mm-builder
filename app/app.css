@@ -1,6 +1,9 @@
 body {
   background: #15142c; }
 
+.popover .popover-title {
+  color: #fff; }
+
 .icon-attackspeed {
   background-image: url("images/icon-attackspeed.png");
   height: 64px;
@@ -64,6 +67,15 @@ body {
   display: inline-block;
   background-size: 100%; }
 
+.card-cost {
+  background-image: url("images/bg-manacost.png");
+  background-size: 100%;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center; }
+
 .card-selection {
   margin: 30px;
   width: calc(100% - 60px);
@@ -124,19 +136,12 @@ card {
     position: absolute;
     top: -12px;
     right: -2px;
-    background-image: url("images/bg-manacost.png");
-    background-size: 100%;
-    color: #fff;
-    height: 28px;
-    line-height: 28px;
-    width: 28px;
-    text-align: center;
     z-index: 2; }
 
 .card-popover {
   width: 200px;
   color: #fff; }
-  .card-popover > div {
+  .card-popover .card-field {
     width: 50%;
     float: left;
     line-height: 24px;
@@ -146,6 +151,13 @@ card {
     height: 24px;
     width: 24px;
     margin-right: 3px; }
+  .card-popover .card-cost {
+    position: absolute;
+    top: 2px;
+    right: 0; }
+  .card-popover .card-description {
+    font-size: 12px;
+    margin-top: 5px; }
   .card-popover small {
     font-size: 10px; }
 

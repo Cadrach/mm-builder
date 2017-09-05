@@ -1,37 +1,41 @@
 <div class="card-popover">
-    <div ng-show="card.count">
+    <div class="card-cost">{{card.manacost}}</div>
+
+    <div class="card-field" ng-show="card.count">
         <div class="icon-count"></div>{{card.count}}
     </div>
-    <div ng-show="card.targets">
+    <div class="card-field" ng-show="card.targets">
         <div class="icon-targets"></div>
         <span ng-show="card.targets == 'Ground'">Ground</span>
         <span ng-show="card.targets == 'Ground & Air'">Gr. & Air</span>
     </div>
-    <div ng-show="card.health">
+    <div class="card-field" ng-show="card.health">
         <div class="icon-health"></div>{{card.health}}
     </div>
-    <div ng-show="card.attackspeed">
+    <div class="card-field" ng-show="card.attackspeed">
         <div class="icon-attackspeed"></div>{{card.attackspeed/1000}}s
     </div>
-    <div ng-show="card.damage">
+    <div class="card-field" ng-show="card.damage">
         <div class="icon-damage"></div>{{card.damage}} <small ng-show="card.dps">({{(card.dps|number:2)*1}}/s)</small>
     </div>
-    <div ng-show="card.range">
+    <div class="card-field" ng-show="card.range">
         <div class="icon-range"></div>
         <span ng-show="card.range>100">{{card.range/100}}</span>
         <span ng-show="card.range<=100">Melee</span>
     </div>
-    <div ng-show="card.speed">
+    <div class="card-field" ng-show="card.speed">
         <div class="icon-speed"></div>{{card.speed}}
     </div>
-    <div ng-show="card.duration">
+    <div class="card-field" ng-show="card.duration">
         <div class="icon-duration"></div>{{card.duration/1000}}s
     </div>
-    <div ng-show="card.lifeTime">
+    <div class="card-field" ng-show="card.lifeTime">
         <div class="icon-duration"></div>{{card.lifeTime}}s
     </div>
-    <div ng-show="card.radius">
+    <div class="card-field" ng-show="card.radius">
         <div class="icon-radius"></div>{{card.radius/1000}}
     </div>
     <span class="clearfix"></span>
+
+    <div class="card-description" ng-bind-html="card.description"></div>
 </div>

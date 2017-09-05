@@ -23,6 +23,7 @@
 angular.module('appMmBuilder', [
     'ngRoute',
     'ngAnimate',
+    'ngSanitize',
     'ui.bootstrap',
     'ui.sortable',
     'ui.select',
