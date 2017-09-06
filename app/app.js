@@ -27,13 +27,16 @@ angular.module('appMmBuilder', [
     'ui.bootstrap',
     'ui.sortable',
     'ui.select',
+    'angular-growl',
 
     'LocalStorageModule',
 
     'appMmBuilder.viewMain',
     'appMmBuilder.card-directive'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+config(['$locationProvider', '$routeProvider', 'growlProvider', function($locationProvider, $routeProvider, growlProvider) {
+  growlProvider.globalTimeToLive(5000);
+
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/'});

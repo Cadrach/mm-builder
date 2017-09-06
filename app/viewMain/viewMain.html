@@ -2,6 +2,25 @@
     <card class="am-fade" ng-repeat="s in selection" value="cardsById[s.id]" ng-click="removeCard($index)"></card>
 </div>
 
+<div class="card-filters">
+    <input class="form-control" ng-model="filters.name"/>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="filters.HitsFlying"> Can Hit Air
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="filters.Fly"> Fly
+        </label>
+    </div>
+    <div class="btn-group btn-group-xs">
+        <div class="btn btn-default" ng-repeat="c in costs">{{c}}</div>
+    </div>
+    <pre>{{filters|json}}</pre>
+</div>
+<div class="clearfix"></div>
+
 <div class="card-list">
     <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
     <div class="clearfix"></div>

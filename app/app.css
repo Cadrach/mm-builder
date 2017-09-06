@@ -1,5 +1,9 @@
+.card-cost, .card-list, card > div {
+  background: #fff !important;
+  color: #000 !important; }
+
 body {
-  background: #15142c; }
+  background: #fff; }
 
 .popover .popover-title {
   color: #fff; }
@@ -86,6 +90,9 @@ body {
     width: calc(100vw/10 - 2*8px - 60px/10);
     height: calc((100vw/10 - 2*8px - 60px/10)*1.18519); }
 
+.card-filters {
+  margin: 10px; }
+
 .card-list {
   margin: 30px;
   padding: 10px;
@@ -95,7 +102,7 @@ body {
   background-image: url("images/bg-list.png");
   background-position: right bottom;
   background-repeat: no-repeat;
-  max-height: calc(100vh - ((100vw/10 - 2*8px - 60px/10)*1.18519) - 30px - 60px);
+  max-height: calc(100vh - ((100vw/10 - 2*8px - 60px/10)*1.18519) - 30px - 60px - 50px);
   overflow-y: auto; }
 
 card {

@@ -33,12 +33,13 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         }
     });
 }])
-.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'cards',
-    function($scope, $timeout, $uibModal, $location, localStorageService, cards) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'growl', 'cards',
+    function($scope, $timeout, $uibModal, $location, localStorageService, growl, cards) {
 
         var cardUniqueId = "ID";
 
         $scope.cards = cards;
+        $scope.costs = _.range(0,10);
         $scope.cardsById = _.indexBy(cards, cardUniqueId);
         $scope.selection = [];
         $scope.wildCardsMax = 2;
@@ -53,10 +54,17 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             $scope.wildCardsUsed = _.reduce(newGroupBy, function(memo, v){return v-1+memo;}, 0);
         }
 
+        /**
+         * Update page URL when deck changes
+         */
         function updateUrl(){
             $location.search('deck', btoa(_.map($scope.selection, function(v){return v.id.toString()}).join('|')));
         }
 
+        /**
+         * Add a card to the selection
+         * @param card
+         */
         $scope.selectCard = function(card){
             var id = card[cardUniqueId];
 
@@ -68,10 +76,12 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 
             //Verification before adding the card
             if($scope.selection.length >= 10){
-                throw "MAX CARDS";
+                growl.error('10 Cards limit reached');
+                return;
             }
             else if(hasMaxWildCard && groupBy[id]){
-                throw "MAX WILDCARDS";
+                growl.error('2 Wildcards maximum allowed');
+                return;
             }
 
             //Add the card
@@ -93,6 +103,10 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             updateUrl();
         }
 
+        /**
+         * Remove card at selected position
+         * @param position
+         */
         $scope.removeCard = function(position){
             $scope.selection.splice(position, 1);
             updateWildCardUsed();
@@ -110,6 +124,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 });
             }
         }catch(e){
+            growl.error('Unable to read passed deck');
             console.error("UNABLE TO READ DECK: " + e);
         }
     }]);
