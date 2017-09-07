@@ -60,6 +60,16 @@ foreach($officialCards as &$card){
         $card['count'] = 1;
     }
 
+    //Fix Spell type
+    if(strpos($card['type'], 'Spell')){
+        $card['type'] = 'Spell';
+    }
+
+    //Fix "isAOE"
+    if(isset($card['radius']) && $card['radius']>0){
+        $card['isAOE'] = true;
+    }
+
 }
 
 $officialCards = collect($officialCards)->keyBy(function($card){return strtolower($card['name']);})->toArray();

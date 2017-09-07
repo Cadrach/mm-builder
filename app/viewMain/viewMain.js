@@ -40,6 +40,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 
         $scope.cards = angular.copy(cards);
         $scope.costs = _.range(0,10);
+        $scope.types = {Minion: 'Minion', Spell: 'Spell', building: 'Building'};
         $scope.cardsById = _.indexBy(cards, cardUniqueId);
         $scope.selection = [];
         $scope.filters = {};
@@ -53,6 +54,70 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             //Update Wildcard used number
             var newGroupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
             $scope.wildCardsUsed = _.reduce(newGroupBy, function(memo, v){return v-1+memo;}, 0);
+        }
+
+        /**
+         * UpdateStats
+         */
+        function updateStats(){
+            //Stored stats
+            $scope.stats = {
+                dpsAir: 0,
+                dpsGround: 0,
+                dpsAirAOE: 0,
+                dpsGroundAOE: 0,
+                dpsBuilding: 0,
+
+                costTotal: 0,
+                costSpells: 0,
+                costMinions: 0,
+                costBuildings: 0,
+
+                totalSpeed: 0,
+                totalRange: 0,
+                totalHealth: 0,
+                totalCreatures: 0,
+                totalCards: $scope.selection.length,
+
+                typeBuildings: 0,
+                typeMinions: 0,
+                typeSpells: 0
+            };
+
+            //Update stored for each card in selection
+            $scope.selection.forEach(function(s){
+                var card = $scope.cardsById[s.id];
+
+                //Manacost
+                $scope.stats.costTotal+= card.manacost;
+
+                if(card.type == 'building'){
+                    $scope.stats.typeBuildings++;
+                    $scope.stats.costBuildings+= card.manacost;
+                }
+                if(card.type == 'Spell'){
+                    $scope.stats.typeSpells++;
+                    $scope.stats.costSpells+= card.manacost;
+                }
+                if(card.type == 'Minion'){
+                    //Totals
+                    $scope.stats.typeMinions++;
+                    $scope.stats.costMinions+= card.manacost;
+                    $scope.stats.totalSpeed+= card.speed;
+                    $scope.stats.totalRange+= card.range;
+                    $scope.stats.totalHealth+= card.health * card.count;
+                    $scope.stats.totalCreatures+= card.count;
+
+                    //DPS
+                    var dps =  card.dps * card.count;
+                    if(card.HitsFlying){$scope.stats.dpsAir+= dps;}
+                    if( ! card.AttackOnlyStationary){$scope.stats.dpsGround+= dps;}
+                    if(card.isAOE && card.HitsFlying){$scope.stats.dpsAirAOE+= dps;}
+                    if(card.isAOE && ! card.AttackOnlyStationary){$scope.stats.dpsGroundAOE+= dps;}
+                    $scope.stats.dpsBuilding+= dps;
+                }
+            })
+
         }
 
         /**
@@ -82,7 +147,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 var filters = $scope.filters;
                 $scope.cards = _.filter($scope.cards, function(card){
                     //Find any filters that is not match, if any found return FALSE to filter out the card
-                    return !_.find(filters, function(v, k){
+                    var show = !_.find(filters, function(v, k){
                         //We return TRUE as soon as a filters is NOT valid => breaks the "find"
 
                         //Arrays
@@ -94,6 +159,9 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                         //String
                         if(_.isString(v) && !card[k].match(new RegExp(v, 'i'))){return true;}
                     })
+
+                    //if( ! show){console.log(card);}
+                    return show;
                 });
             }
         }
@@ -136,8 +204,9 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 if(a.name>b.name) return 1;
             })
 
-            //Update our URL
+            //Update our URL & stats
             updateUrl();
+            updateStats();
         }
 
         /**
@@ -148,6 +217,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             $scope.selection.splice(position, 1);
             updateWildCardUsed();
             updateUrl();
+            updateStats();
         }
 
         $scope.toggleFilterArrayValue = function(property, value){
