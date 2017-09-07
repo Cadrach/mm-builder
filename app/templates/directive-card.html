@@ -1,11 +1,11 @@
 <div class="card-rarity-{{card.rarity}}"
-     style="background-image: url({{card.image}});width:{{width}}px;height:{{height}}px;font-size:{{fontSize}}px"
+     style="background-image: url({{card.image}});width:{{width}}px;height:{{height}}px;font-size:{{fontSize}}px; margin-top:{{height*.19}}px"
      popover-append-to-body="true"
      popover-placement="auto top"
      popover-trigger="'mouseenter'"
      popover-title="{{card.name}}"
      uib-popover-template="'app/templates/directive-card-popover.html'">
     <div class="card-name">{{card.name}}</div>
-    <div class="card-cost">{{card.manacost}}</div>
+    <div class="card-cost" style="font-size:{{fontSize}}px; line-height:{{height*.38}}px">{{card.manacost}}</div>
     <!--popover-trigger="'mouseenter'"-->
 </div>
