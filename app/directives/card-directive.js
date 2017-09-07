@@ -21,14 +21,41 @@
 
 angular.module('appMmBuilder.card-directive', [])
 
-.directive('card', ['$sce', function($sce) {
+.directive('card', ['$window', '$timeout', function($window, $timeout) {
     return {
         link: function(scope, elmt){
+            scope.ratio =  1.185185185185185;
+            scope.width = scope.width ? scope.width:61;
+            scope.height = scope.width * scope.ratio;
+            scope.fontSize = 12;
+
+            function autoSize(){
+                //try 1 line
+                scope.width = (elmt.parent().width()) / 10 - 16;
+
+                //If width is under 50, work on 2 lines
+                if(scope.width < 61){
+                    scope.width = (elmt.parent().width()) / 5 - 16;
+                }
+
+                scope.height = Math.floor(scope.width * scope.ratio);
+                scope.fontSize = scope.height * 0.16667;
+
+                scope.$digest();
+            }
+
+            //Observe resize if auto size
+            if(scope.autoSize){
+                angular.element($window).bind('resize', autoSize);
+                $timeout(autoSize);
+            }
         },
         restrict: 'E',
         // transclude: true,
         scope: {
-            card: '=value'
+            card: '=value',
+            width: '@',
+            autoSize: '@'
         },
         templateUrl: 'app/templates/directive-card.html?v=' + codeVersion
     }

@@ -1,4 +1,4 @@
-<div class="col-md-10 col-xs-12 pull-left">
+<div class="col-md-10 col-xs-12">
     <div class="card-selection">
         <card class="am-fade" ng-repeat="s in selection" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
     </div>
@@ -6,46 +6,50 @@
 
 <div class="col-md-2 col-xs-12 pull-right card-stats" ng-include="'app/templates/partial-stats.html'"></div>
 
-<div class="col-md-10 col-xs-12 pull-left card-filters">
-    <div class="col-md-2">
-        <input class="form-control input-sm" ng-model="filters.name" placeholder="Search for Card..."/>
-    </div>
-    <div class="col-md-6">
-        <div class="btn-group btn-group-sm">
-            <div class="btn btn-{{filters.manacost.indexOf(c)>=0?'primary':'default'}}" ng-repeat="c in costs" ng-click="toggleFilterArrayValue('manacost', c)">{{c}}</div>
+<div class="col-md-10 col-xs-12">
+    <div class="card-filters">
+        <div class="col-md-2 col-xs-6">
+            <input class="form-control input-sm" ng-model="filters.name" placeholder="Search for Card..."/>
         </div>
-        <div class="btn-group btn-group-sm">
-            <div class="btn btn-{{filters.type.indexOf(t)>=0?'primary':'default'}}" ng-repeat="(t,v) in types" ng-click="toggleFilterArrayValue('type', t)">{{v}}s</div>
+        <div class="col-md-6">
+            <div class="btn-group btn-group-sm">
+                <div class="btn btn-{{filters.manacost.indexOf(c)>=0?'primary':'default'}}" ng-repeat="c in costs" ng-click="toggleFilterArrayValue('manacost', c)">{{c}}</div>
+            </div>
+            <div class="btn-group btn-group-sm">
+                <div class="btn btn-{{filters.type.indexOf(t)>=0?'primary':'default'}}" ng-repeat="(t,v) in types" ng-click="toggleFilterArrayValue('type', t)">{{v}}s</div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model="filters.hitsFlying">Hits&nbsp;Air
-            </label>
+        <div class="col-md-4">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="filters.hitsFlying">Hits&nbsp;Air
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="filters.flying">Flying
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="filters.isRanged">Ranged
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="filters.isAOE">AoE
+                </label>
+            </div>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model="filters.flying">Flying
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model="filters.isRanged">Ranged
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" ng-model="filters.isAOE">AoE
-            </label>
-        </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 
 
-<div class="col-md-10 col-xs-12 pull-left card-list">
-
-    <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
-    <div class="clearfix"></div>
-    {{cards.length}} Cards
+<div class="col-md-10 col-xs-12">
+    <div class="card-list">
+        <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
+        <div class="clearfix"></div>
+        {{cards.length}} Cards
+    </div>
 </div>
