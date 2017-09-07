@@ -3,8 +3,8 @@ $cardWidthToHeightRatio: 1.185185185185185;
 $bgBody: #15142c;
 
 //For testing
-.card-cost, .card-list, card>div{background: #fff !important; color: #000 !important;}
-$bgBody: #fff;
+//.card-cost, .card-list, card>div{background: #fff !important; color: #000 !important;}
+//$bgBody: #fff;
 
 
 body{
@@ -38,27 +38,27 @@ body{
 }
 
 .card-selection{
-  margin: 30px;
-  width: calc(100% - 60px);
-  height: calc((100vw/10 - 2*8px - 60px/10)*#{$cardWidthToHeightRatio});
+  //margin: 30px;
+  //width: calc(100% - 260px);
+  //height: calc((100vw/10 - 2*8px - 280px/10)*#{$cardWidthToHeightRatio});
   margin-top: 10px;
   margin-bottom: 40px;
 
   card>div{
-    width: calc(100vw/10 - 2*8px - 60px/10); //10 card - 2xcards_margin - cards_selection_margion/10
-    height: calc((100vw/10 - 2*8px - 60px/10)*#{$cardWidthToHeightRatio});
+    width: calc(100vw/10 - 2*8px); //10 card - 2xcards_margin - cards_selection_margion/10
+    height: calc((100vw/10 - 2*8px)*#{$cardWidthToHeightRatio});
   }
 }
 
 .card-filters{
 //    height: 30px;
-    margin: 10px;
+//    margin: 10px;
 }
 
 .card-list{
-  margin: 30px;
-  padding: 10px;
-  width: calc(100% - 60px);
+  //margin: 30px;
+  //padding: 10px;
+  //width: calc(100% - 60px);
   border: 3px solid #35383c;
   background-color: #17141a;
   background-image: url('images/bg-list.png');

@@ -78,6 +78,8 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 totalHealth: 0,
                 totalCreatures: 0,
                 totalCards: $scope.selection.length,
+                totalRanged: 0,
+                totalFlying: 0,
 
                 typeBuildings: 0,
                 typeMinions: 0,
@@ -104,9 +106,11 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                     $scope.stats.typeMinions++;
                     $scope.stats.costMinions+= card.manacost;
                     $scope.stats.totalSpeed+= card.speed;
-                    $scope.stats.totalRange+= card.range;
+                    $scope.stats.totalRange+= card.isRanged ? card.range:0;
                     $scope.stats.totalHealth+= card.health * card.count;
                     $scope.stats.totalCreatures+= card.count;
+                    $scope.stats.totalRanged+=card.isRanged?1:0;
+                    $scope.stats.totalFlying+=card.Flying?1:0;
 
                     //DPS
                     var dps =  card.dps * card.count;
