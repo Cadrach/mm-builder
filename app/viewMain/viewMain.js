@@ -38,10 +38,11 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 
         var cardUniqueId = "ID";
 
-        $scope.cards = cards;
+        $scope.cards = angular.copy(cards);
         $scope.costs = _.range(0,10);
         $scope.cardsById = _.indexBy(cards, cardUniqueId);
         $scope.selection = [];
+        $scope.filters = {};
         $scope.wildCardsMax = 2;
         $scope.wildCardsUsed = 0;
 
@@ -59,6 +60,42 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          */
         function updateUrl(){
             $location.search('deck', btoa(_.map($scope.selection, function(v){return v.id.toString()}).join('|')));
+        }
+
+        /**
+         * Function run when changing filters
+         */
+        function onFilterChange(){
+            //Reset cards list
+            $scope.cards = angular.copy(cards);
+
+            //Cleanup filters
+            _.each($scope.filters, function(v, k){
+                //Filters to clean up
+                if(_.isArray(v) && !v.length){delete $scope.filters[k];}
+                if(_.isBoolean(v) && !v){delete $scope.filters[k];}
+                if(_.isString(v) && !v){delete $scope.filters[k];}
+            });
+
+            //Filter if required
+            if( !_.isEmpty($scope.filters)){
+                var filters = $scope.filters;
+                $scope.cards = _.filter($scope.cards, function(card){
+                    //Find any filters that is not match, if any found return FALSE to filter out the card
+                    return !_.find(filters, function(v, k){
+                        //We return TRUE as soon as a filters is NOT valid => breaks the "find"
+
+                        //Arrays
+                        if(_.isArray(v) && v.indexOf(card[k])<0){return true;}
+
+                        //Booleans
+                        if(_.isBoolean(v) && card[k]!=v){return true;}
+
+                        //String
+                        if(_.isString(v) && !card[k].match(new RegExp(v, 'i'))){return true;}
+                    })
+                });
+            }
         }
 
         /**
@@ -112,6 +149,23 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             updateWildCardUsed();
             updateUrl();
         }
+
+        $scope.toggleFilterArrayValue = function(property, value){
+            if( ! $scope.filters[property]){
+                $scope.filters[property] = [value];
+            }
+            else if($scope.filters[property].indexOf(value)>=0){
+                $scope.filters[property].splice($scope.filters[property].indexOf(value), 1);
+            }
+            else{
+                $scope.filters[property].push(value);
+            }
+        }
+
+        /**
+         * EVENTS
+         */
+        $scope.$watch('filters', onFilterChange, true);
 
         /**
          * BOOTSTRAP
