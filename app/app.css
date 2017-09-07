@@ -83,6 +83,49 @@ body {
     width: calc(100vw/10 - 2*8px);
     height: calc((100vw/10 - 2*8px)*1.18519); }
 
+.card-stats table {
+  margin: 0;
+  font-size: 12px; }
+  .card-stats table th {
+    width: 160px; }
+  .card-stats table tr:first-child th, .card-stats table tr:first-child td {
+    border-top: 0; }
+  .card-stats table td {
+    text-align: center; }
+.card-stats h2 {
+  position: relative;
+  font-size: 22px;
+  margin: 5px 0;
+  height: 48px;
+  line-height: 48px; }
+.card-stats .card-cost {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  width: 48px;
+  height: 48px;
+  line-height: 48px; }
+
+.card-filters {
+  padding: 10px 5px;
+  border: 3px solid #35383c;
+  margin: 10px 0; }
+  .card-filters > * {
+    height: 34px;
+    line-height: 34px;
+    padding: 0 5px; }
+  .card-filters .checkbox {
+    float: left;
+    margin: 0;
+    margin-right: 8px; }
+    .card-filters .checkbox input {
+      margin-left: -16px;
+      top: 7px; }
+  .card-filters .form-control {
+    position: relative;
+    top: 3px; }
+
 .card-list {
   border: 3px solid #35383c;
   background-color: #17141a;

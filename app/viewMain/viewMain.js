@@ -36,7 +36,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
 .controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'growl', 'cards',
     function($scope, $timeout, $uibModal, $location, localStorageService, growl, cards) {
 
-        var cardUniqueId = "ID";
+        var cardUniqueId = "iD";
 
         $scope.cards = angular.copy(cards);
         $scope.costs = _.range(0,10);
@@ -110,14 +110,14 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                     $scope.stats.totalHealth+= card.health * card.count;
                     $scope.stats.totalCreatures+= card.count;
                     $scope.stats.totalRanged+=card.isRanged?1:0;
-                    $scope.stats.totalFlying+=card.Flying?1:0;
+                    $scope.stats.totalFlying+=card.flying?1:0;
 
                     //DPS
                     var dps =  card.dps * card.count;
-                    if(card.HitsFlying){$scope.stats.dpsAir+= dps;}
-                    if( ! card.AttackOnlyStationary){$scope.stats.dpsGround+= dps;}
-                    if(card.isAOE && card.HitsFlying){$scope.stats.dpsAirAOE+= dps;}
-                    if(card.isAOE && ! card.AttackOnlyStationary){$scope.stats.dpsGroundAOE+= dps;}
+                    if(card.hitsFlying){$scope.stats.dpsAir+= dps;}
+                    if( ! card.attackOnlyStationary){$scope.stats.dpsGround+= dps;}
+                    if(card.isAOE && card.hitsFlying){$scope.stats.dpsAirAOE+= dps;}
+                    if(card.isAOE && ! card.attackOnlyStationary){$scope.stats.dpsGroundAOE+= dps;}
                     $scope.stats.dpsBuilding+= dps;
                 }
             })
