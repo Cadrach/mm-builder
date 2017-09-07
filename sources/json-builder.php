@@ -23,8 +23,8 @@ $keys = [
 ];
 
 //What we should convert to numbers
-$numbers = ['ID', 'manacost', 'count', 'health', 'speed', 'attackspeed', 'damage', 'range', 'dps'];
-$booleans = ['isRanged', 'Flying', 'HitsFlying', 'AttackOnlyStationary', 'isAOE'];
+$numbers = ['iD', 'manacost', 'count', 'health', 'speed', 'attackspeed', 'damage', 'range', 'dps'];
+$booleans = ['isRanged', 'flying', 'hitsFlying', 'attackOnlyStationary', 'isAOE'];
 
 /**
  * FIRST WE READ ORIGINAL CARDS INFORMATION
