@@ -1,29 +1,31 @@
-<div class="col-md-10 col-xs-12">
+<div class="col-md-9 col-xs-12">
     <div class="card-selection">
         <card class="am-fade" ng-repeat="s in selection.deck" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
+        <div class="clearfix"></div>
     </div>
 </div>
 
-<div class="col-md-2 col-xs-12 pull-right master-selection">
-    <img ng-src="{{selection.master.image}}"/>
-    <ui-select ng-model="selection.master" theme="bootstrap">
-        <ui-select-match placeholder="Select a Master">{{$select.selected.name}}</ui-select-match>
-        <ui-select-choices repeat="m in masters">
-            <img class="pull-left" ng-src="{{m.image}}" style="width:32px"/>
-            <div ng-bind-html="m.name | highlight: $select.search"></div>
-            <div class="clearfix"></div>
-        </ui-select-choices>
-    </ui-select>
+<div class="col-md-3 col-xs-12 pull-right">
+    <div class="master-selection">
+        <img ng-src="{{selection.master.image}}"/>
+        <ui-select ng-model="selection.master" theme="bootstrap">
+            <ui-select-match placeholder="Select a Master">{{$select.selected.name}}</ui-select-match>
+            <ui-select-choices repeat="m in masters">
+                <img ng-src="{{m.image}}"/>
+                <div ng-bind-html="m.name | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+
+    <div ng-include="'app/templates/partial-stats.html'"></div>
 </div>
 
-<div class="col-md-2 col-xs-12 pull-right card-stats" ng-include="'app/templates/partial-stats.html'"></div>
-
-<div class="col-md-10 col-xs-12">
+<div class="col-md-9 col-xs-12">
     <div class="card-filters">
-        <div class="col-md-2 col-xs-6">
+        <div class="pull-left">
             <input class="form-control input-sm" ng-model="filters.name" placeholder="Search for Card..."/>
         </div>
-        <div class="col-md-6">
+        <div class="pull-left">
             <div class="btn-group btn-group-sm">
                 <div class="btn btn-{{filters.manacost.indexOf(c)>=0?'primary':'default'}}" ng-repeat="c in costs" ng-click="toggleFilterArrayValue('manacost', c)">{{c}}</div>
             </div>
@@ -31,7 +33,7 @@
                 <div class="btn btn-{{filters.type.indexOf(t)>=0?'primary':'default'}}" ng-repeat="(t,v) in types" ng-click="toggleFilterArrayValue('type', t)">{{v}}s</div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="pull-left">
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="filters.hitsFlying">Hits&nbsp;Air
@@ -58,7 +60,7 @@
 </div>
 
 
-<div class="col-md-10 col-xs-12">
+<div class="col-md-9 col-xs-12">
     <div class="card-list">
         <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
         <div class="clearfix"></div>

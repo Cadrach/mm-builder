@@ -1,62 +1,72 @@
-<h2>
-    {{stats.totalCards}} Card{{stats.totalCards>1?'s':''}}
-    <div class="card-cost pull-right">{{(stats.costTotal/stats.totalCards|number:1)*1}}</div>
-</h2>
-<table class="table table-condensed">
-    <tr>
-        <th>Wild Cards used</th>
-        <td>{{wildCardsUsed}}</td>
-    </tr>
-</table>
+<div class="card-stats">
+    <h2>
+        {{stats.totalCards}} Card{{stats.totalCards>1?'s':''}}
+        <div class="card-cost pull-right">{{(stats.costTotal/stats.totalCards|number:1)*1}}</div>
+    </h2>
+    <table class="table table-condensed">
+        <tr>
+            <th>Wild Cards used</th>
+            <td>{{wildCardsUsed}}</td>
+        </tr>
+    </table>
 
-<h2>
-    {{stats.typeMinions}} Minion{{stats.typeMinions>1?'s':''}}
-    <div class="card-cost pull-right">{{(stats.costMinions/stats.typeMinions|number:1)*1}}</div>
-</h2>
-<table class="table table-condensed">
-    <tr>
-        <th>Building&nbsp;DPS</th>
-        <td>{{stats.dpsBuilding|number:0}}/s</td>
-    </tr>
-    <tr>
-        <th>Air&nbsp;DPS</th>
-        <td>{{stats.dpsAir|number:0}}/s</td>
-    </tr>
-    <tr>
-        <th>Air&nbsp;AOE&nbsp;DPS</th>
-        <td>{{stats.dpsAirAOE|number:0}}/s</td>
-    </tr>
-    <tr>
-        <th>Ground&nbsp;DPS</th>
-        <td>{{stats.dpsGround|number:0}}/s</td>
-    </tr>
-    <tr>
-        <th>Ground&nbsp;AOE&nbsp;DPS</th>
-        <td>{{stats.dpsGroundAOE|number:0}}/s</td>
-    </tr>
-    <tr>
-        <th>Avg.&nbsp;Creatures'&nbsp;Health</th>
-        <td>{{stats.totalHealth/stats.totalCreatures|number:0}}</td>
-    </tr>
-    <tr>
-        <th>Avg.&nbsp;Speed</th>
-        <td>{{(stats.totalSpeed/stats.typeMinions|number:1)*1}}</td>
-    </tr>
-    <tr>
-        <th>Avg.&nbsp;Range</th>
-        <td>{{(stats.totalRange/stats.totalRanged/1000|number:1)*1}}</td>
-    </tr>
-    <tr>
-        <th>Melee</th>
-        <td>{{(stats.typeMinions-stats.totalRanged)}}</td>
-    </tr>
-</table>
-<h2>
-    {{stats.typeSpells}} Spell{{stats.typeSpells>1?'s':''}}
-    <div class="card-cost pull-right">{{(stats.costSpells/stats.typeSpells|number:1)*1}}</div>
-</h2>
-<h2>
-    {{stats.typeBuildings}} Building{{stats.typeBuildings>1?'s':''}}
-    <div class="card-cost pull-right">{{(stats.costBuildings/stats.typeBuildings|number:1)*1}}</div>
-</h2>
+    <div class="divider"></div>
+
+    <h2>
+        {{stats.typeMinions}} Minion{{stats.typeMinions>1?'s':''}}
+        <div class="card-cost pull-right">{{(stats.costMinions/stats.typeMinions|number:1)*1}}</div>
+    </h2>
+    <table class="table table-condensed">
+        <tr>
+            <th>Building&nbsp;DPS</th>
+            <td>{{stats.dpsBuilding|number:0}}/s</td>
+        </tr>
+        <tr>
+            <th>Air&nbsp;DPS</th>
+            <td>{{stats.dpsAir|number:0}}/s</td>
+        </tr>
+        <tr>
+            <th>Air&nbsp;AOE&nbsp;DPS</th>
+            <td>{{stats.dpsAirAOE|number:0}}/s</td>
+        </tr>
+        <tr>
+            <th>Ground&nbsp;DPS</th>
+            <td>{{stats.dpsGround|number:0}}/s</td>
+        </tr>
+        <tr>
+            <th>Ground&nbsp;AOE&nbsp;DPS</th>
+            <td>{{stats.dpsGroundAOE|number:0}}/s</td>
+        </tr>
+        <tr>
+            <th>Avg.&nbsp;Creatures'&nbsp;Health</th>
+            <td>{{stats.totalHealth/stats.totalCreatures|number:0}}</td>
+        </tr>
+        <tr>
+            <th>Avg.&nbsp;Speed</th>
+            <td>{{(stats.totalSpeed/stats.typeMinions|number:1)*1}}</td>
+        </tr>
+        <tr>
+            <th>Avg.&nbsp;Range</th>
+            <td>{{(stats.totalRange/stats.totalRanged/1000|number:1)*1}}</td>
+        </tr>
+        <tr>
+            <th>Melee</th>
+            <td>{{(stats.typeMinions-stats.totalRanged)}}</td>
+        </tr>
+    </table>
+
+    <div class="divider"></div>
+
+    <h2>
+        {{stats.typeSpells}} Spell{{stats.typeSpells>1?'s':''}}
+        <div class="card-cost pull-right">{{(stats.costSpells/stats.typeSpells|number:1)*1}}</div>
+    </h2>
+
+    <div class="divider"></div>
+
+    <h2>
+        {{stats.typeBuildings}} Building{{stats.typeBuildings>1?'s':''}}
+        <div class="card-cost pull-right">{{(stats.costBuildings/stats.typeBuildings|number:1)*1}}</div>
+    </h2>
+</div>
 <!--<pre>{{stats|json}}</pre>-->

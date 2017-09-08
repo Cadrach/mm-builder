@@ -8,6 +8,40 @@ $list-group-bg: #15142c;
 $list-group-hover-bg: $popover-border-color;
 $list-group-border: $popover-border-color;
 $text-color: #fff;
+$body-bg: #15142c;
+$dropdown-bg: lighten($body-bg, 20);
+
+/**
+ * BUTTONS
+ */
+$btn-default-color: #fff6cc;
+$btn-default-bg: #bd5b00;
+$btn-default-border: #f9d28c;
+
+$btn-primary-color: #fff6cc;
+$btn-primary-bg: #e43b03;
+$btn-primary-border: #ffbc98;
+
+.btn-default{
+  background: linear-gradient(to bottom, #e9a11c 30%,#bd5b00 100%) !important;
+}
+
+.btn-primary{
+  background: linear-gradient(to bottom, #ea681a 30%,#e43b03 100%) !important;
+}
+
+/**
+ * INPUTS
+ */
+$input-bg: $btn-default-color;
+$input-border: $btn-default-border;
+$input-border-focus: $btn-primary-border;
+
+/**
+ * GUTTERS & MD WIDTH
+ */
+$grid-gutter-width: 10px;
+$screen-md: 800px;
 
 @import "../bower_components/normalize-css/normalize.css";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";

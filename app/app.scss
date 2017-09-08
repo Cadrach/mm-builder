@@ -1,6 +1,8 @@
 //Width of a top card: calc(100vw/10 - 2*8px - 60px/10)
 $cardWidthToHeightRatio: 1.185185185185185;
 $bgBody: #15142c;
+$color-legendary: #c0a659;
+$highlight: #f07400;
 
 //For testing
 //.card-cost, .card-list, card>div{background: #fff !important; color: #000 !important;}
@@ -8,7 +10,8 @@ $bgBody: #15142c;
 
 
 body{
-  background: $bgBody;
+  background: url('images/bg-body.jpg') no-repeat center center fixed;
+  background-size: cover;
   font-family: Roboto;
 }
 
@@ -28,6 +31,21 @@ body{
   }
 }
 
+.block{
+  background-color: $bgBody;
+  border: 3px solid #35383c;
+  border-radius: 5px;
+}
+
+.divider{
+  background-image: url('images/divider.png');
+  background-size: 100%;
+  background-position: center center;
+  width: 200px;
+  height: 13px;
+  margin: auto;
+}
+
 .card-cost{
   background-image: url('images/bg-manacost.png');
   background-size: 100%;
@@ -36,6 +54,48 @@ body{
   height: 28px;
   line-height: 28px;
   text-align: center;
+}
+
+.master-selection{
+  @extend .block;
+  padding: 20px;
+  margin-top: 17px;
+  margin-bottom: 10px;
+  text-align: center;
+
+  img{
+    background: lighten($bgBody, 20);
+    border: 3px solid $color-legendary;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  .ui-select-container{
+    max-width: 200px;
+    margin: auto;
+  }
+  .ui-select-choices-row{
+    //height: 38px !important;
+    background-color: lighten($bgBody, 20) !important;
+    &.active>span{background-color: $highlight !important;}
+    &:hover>span{background-color: darken($highlight, 10) !important;}
+  }
+  .ui-select-placeholder{
+    color: #fff6cc;
+  }
+  .ui-select-choices-row-inner{
+    //height: 38px !important;
+    color: #fff !important;
+    line-height: 32px !important;
+
+    img{
+      border-width: 1px;
+      float: left;
+      height: 32px;
+      width: 32px;
+      margin-right: 10px;
+    }
+  }
 }
 
 .card-selection{
@@ -48,39 +108,42 @@ body{
 }
 
 .card-stats{
+  @extend .block;
+  padding: 5px;
   table{
     margin: 0;
     font-size: 12px;
-    th{width: 160px;}
+    th{width: 70%;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
     tr:first-child {th, td{border-top: 0;}}
     td{text-align: center}
   }
   h2{
     position: relative;
     font-size: 22px;
-    margin: 5px 0;
-    height: 48px;
-    line-height: 48px;
+    margin: 0;
+    height: 32px;
+    line-height: 32px;
   }
   .card-cost{
     position: absolute;
-    top: 0;
+    top: -7px;
     right: 0;
-    font-size: 18px;
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    line-height: 42px;
   }
 }
 
 .card-filters{
+  @extend .block;
   padding: 10px 5px;
-  border: 3px solid #35383c;
   margin: 10px 0;
   &>*{
     min-height: 34px;
     line-height: 34px;
-    padding: 0 5px;
+    margin-left: 5px;
+    //padding: 0 5px;
   }
   .checkbox{
     float: left;
@@ -90,17 +153,17 @@ body{
   }
   .form-control{
     position: relative;
-    top: 3px;
+    top: 2px;
   }
 }
 
 .card-list{
+  @extend .block;
   //margin: 30px;
   //padding: 10px;
   //width: calc(100% - 60px);
-  border: 3px solid #35383c;
   background-color: #17141a;
-  background-image: url('images/bg-list.png');
+  //background-image: url('images/bg-list.png');
   background-position: right bottom;
   background-repeat: no-repeat;
 
@@ -112,13 +175,12 @@ body{
 card{
   margin: 0;
 
-
   //Rarities
   .card-rarity-Regular{outline-color: #7f7f7f;}
   .card-rarity-Common{outline-color: #82b577;}
   .card-rarity-Rare{outline-color: #3d77c6;}
   .card-rarity-Supreme{outline-color: #a055a0;}
-  .card-rarity-Legendary{outline-color: #c0a659;}
+  .card-rarity-Legendary{outline-color: $color-legendary;}
 
 
   &>div{
