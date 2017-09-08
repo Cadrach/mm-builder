@@ -1,65 +1,32 @@
 <?php
 
-
-
 //Get list of masters
-//https://minionmasters.gamepedia.com/api.php?action=query&format=json&prop=imageinfo%7Cpageimages%7Cimages&titles=Masters&iiprop=timestamp%7Cuser%7Curl
 $response = $client->get('',[
     'query'=> [
-        'action'=>'query', 'list'=>'categorymembers', 'cmtitle'=>'Category:Masters', 'cmlimit'=>500, 'format'=>'json',
-
-//        'rvprop' => 'content', 'rvsection'=>'0', //get text content
-//        'pithumbsize'=>'256', //get thumbnail at 256 height = real size
-//        'prop' => 'info|imageinfo',
-//        'iiprop' => 'url|size',
-//        'iiurlwidth' => '256',
-//        'iiurlheight' => '256',
+        'action'=>'parse', 'format'=>'json',
+        'page' => 'Masters',
+        'prop' => 'wikitext|images|text'
     ]
 ]);
 
-echo '<pre>';
+$mastersPage = \GuzzleHttp\json_decode($response->getBody()->getContents(), true)['parse'];
+$text = $mastersPage['wikitext']['*'];
+$html = $mastersPage['text']['*'];
 
-$list = \GuzzleHttp\json_decode($response->getBody()->getContents(), true)['query']['categorymembers'];
+//Look for templates in code
+preg_match_all('/{{MP icon\|(.*?)\|(.*?)}}/', $text, $matches);
 
-$masters = [];
-
-////Retrieve thumbnail of list
-//foreach($list as $page){
-//    $response = $client->get('',[
-//        'query'=> [
-//            'action'=>'query', 'pageids'=> $page['pageid'], 'format'=>'json',
-//            'prop' => 'imageinfo',
-//            'iiprop' => 'url|size',
-//            'iiurlwidth' => '256',
-//            'iiurlheight' => '256',
-//            'rvprop' => 'content', 'rvsection'=>'0', //get text content
-//            'pithumbsize'=>'256', //get thumbnail at 256 height = real size
-//        ]
-//    ]);
-//
-//    $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true)['query'];
-//
-//    print_r($data);
-//    break;
-//}
-
-foreach($list as $page){
-
-    $response = $client->get('',[
-        'query'=> [
-            'action'=>'query', 'pageids'=> $page['pageid'], 'format'=>'json',
-            'rvprop' => 'content', 'rvsection'=>'0', //get text content
-            'pithumbsize'=>'256', //get thumbnail at 256 height = real size
-            'prop' => 'pageimages|revisions|templates'
-        ]
-    ]);
-
-    $data = \GuzzleHttp\json_decode($response->getBody()->getContents(), true)['query']['pages'][$page['pageid']];
-
-    print_r($data);
-    break;
+//Loop on each template
+foreach($matches[2] as $name){
+    //Find image in parsed HTML
+    preg_match('/<img.*?alt="'.$name.'".*?src="(.*?)"/i', $html, $match);
+    //Create Master
+    $masters[] = [
+        'id' => strtolower(preg_replace('/[^a-zA-Z.]+/', '', $name)),
+        'name' => $name,
+        'image' => $match[1],
+    ];
 }
 
-print_r($list);
-
-die();
+//Save to file
+file_put_contents('masters.json', json_encode($masters));
