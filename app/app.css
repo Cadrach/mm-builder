@@ -226,26 +226,34 @@ body {
 
 card {
   margin: 0; }
-  card .card-rarity-Regular {
-    outline-color: #7f7f7f; }
-  card .card-rarity-Common {
-    outline-color: #82b577; }
-  card .card-rarity-Rare {
-    outline-color: #3d77c6; }
-  card .card-rarity-Supreme {
-    outline-color: #a055a0; }
-  card .card-rarity-Legendary {
-    outline-color: #c0a659; }
+  card .card-rarity-Regular:before {
+    border-color: #7f7f7f; }
+  card .card-rarity-Common:before {
+    border-color: #82b577; }
+  card .card-rarity-Rare:before {
+    border-color: #3d77c6; }
+  card .card-rarity-Supreme:before {
+    border-color: #a055a0; }
+  card .card-rarity-Legendary:before {
+    border-color: #c0a659; }
   card > div {
     background-size: 100%;
     display: block;
     float: left;
     margin: 8px 8px;
     position: relative;
-    outline: 3px solid red;
     border: 2px solid #18181e;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
     background-color: #000; }
+    card > div:before {
+      display: block;
+      content: ' ';
+      height: calc(100% + 8px);
+      width: calc(100% + 8px);
+      border: 3px solid red;
+      position: relative;
+      left: -4px;
+      top: -4px; }
   card .card-name {
     position: absolute;
     bottom: 0;

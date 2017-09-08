@@ -222,11 +222,11 @@ card{
   margin: 0;
 
   //Rarities
-  .card-rarity-Regular{outline-color: #7f7f7f;}
-  .card-rarity-Common{outline-color: #82b577;}
-  .card-rarity-Rare{outline-color: #3d77c6;}
-  .card-rarity-Supreme{outline-color: #a055a0;}
-  .card-rarity-Legendary{outline-color: $color-legendary;}
+  .card-rarity-Regular:before{border-color: #7f7f7f;}
+  .card-rarity-Common:before{border-color: #82b577;}
+  .card-rarity-Rare:before{border-color: #3d77c6;}
+  .card-rarity-Supreme:before{border-color: #a055a0;}
+  .card-rarity-Legendary:before{border-color: $color-legendary;}
 
 
   &>div{
@@ -235,10 +235,20 @@ card{
     float: left;
     margin: 8px 8px;
     position: relative;
-    outline: 3px solid red;
+    //outline: 3px solid red;
     border: 2px solid #18181e;
     box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
     background-color: #000;
+    &:before{
+      display: block;
+      content:' ';
+      height: calc(100% + 8px);
+      width: calc(100% + 8px);
+      border: 3px solid red;
+      position: relative;
+      left: -4px;
+      top: -4px;
+    }
   }
   .card-name{
     position: absolute;
