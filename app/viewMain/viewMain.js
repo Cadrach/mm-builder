@@ -36,8 +36,8 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         }
     });
 }])
-.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'growl', 'cards', 'masters',
-    function($scope, $timeout, $uibModal, $location, localStorageService, growl, cards, masters) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', '$window', 'localStorageService', 'growl', 'cards', 'masters',
+    function($scope, $timeout, $uibModal, $location, $window, localStorageService, growl, cards, masters) {
 
         var cardUniqueId = "iD";
 
@@ -294,4 +294,5 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          */
         $scope.$watch('filters', onFilterChange, true);
         $scope.$watch('selection.master', updateUrl, true);
+        angular.element($window).bind('resize', function(){$scope.$broadcast('update-scrollable')});
     }]);

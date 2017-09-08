@@ -32,7 +32,8 @@ angular.module('appMmBuilder', [
     'LocalStorageModule',
 
     'appMmBuilder.viewMain',
-    'appMmBuilder.card-directive'
+    'appMmBuilder.card-directive',
+    'appMmBuilder.scrollable-directive'
 ]).
 config(['$locationProvider', '$routeProvider', 'growlProvider', function($locationProvider, $routeProvider, growlProvider) {
   growlProvider.globalTimeToLive(5000);

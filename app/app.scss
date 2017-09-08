@@ -13,6 +13,7 @@ body{
   background: url('images/bg-body.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: Roboto;
+  overflow: hidden;
 }
 
 .popover{
@@ -21,6 +22,16 @@ body{
   }
 }
 
+.mCSB_container{
+  margin-right: 8px !important;
+}
+
+.mCSB_dragger_bar{
+  background: $highlight !important;
+}
+.mCSB_draggerRail{
+  background: lighten($bgBody, 10) !important;
+}
 @each $name in 'attackspeed' 'count' 'damage' 'duration' 'health' 'range' 'speed' 'targets' 'radius'{
   .icon-#{$name} {
     background-image: url('images/icon-#{$name}.png');

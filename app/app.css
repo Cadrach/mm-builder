@@ -1,10 +1,20 @@
 body {
   background: url("images/bg-body.jpg") no-repeat center center fixed;
   background-size: cover;
-  font-family: Roboto; }
+  font-family: Roboto;
+  overflow: hidden; }
 
 .popover .popover-title {
   color: #fff; }
+
+.mCSB_container {
+  margin-right: 8px !important; }
+
+.mCSB_dragger_bar {
+  background: #f07400 !important; }
+
+.mCSB_draggerRail {
+  background: #26244f !important; }
 
 .icon-attackspeed {
   background-image: url("images/icon-attackspeed.png");

@@ -77,7 +77,7 @@
 
 
 <div class="col-md-9 col-xs-12">
-    <div class="card-list">
+    <div class="card-list" scrollable  autosize-from-top>
         <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
         <div class="clearfix"></div>
         <!--{{cards.length}} Cards-->
