@@ -251,11 +251,15 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          * BOOTSTRAP
          */
         var deck = $location.search().deck;
+        var master = $location.search().master;
         try{
             if(deck){
                 atob(deck).split('|').forEach(function(id){
                     $scope.selectCard($scope.cardsById[id]);
                 });
+            }
+            if(master){
+                $scope.selection.master = _.findWhere(masters, {id: master});
             }
         }catch(e){
             growl.error('Unable to read passed deck');
