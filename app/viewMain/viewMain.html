@@ -1,7 +1,19 @@
 <div class="col-md-10 col-xs-12">
     <div class="card-selection">
-        <card class="am-fade" ng-repeat="s in selection" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
+        <card class="am-fade" ng-repeat="s in selection.deck" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
     </div>
+</div>
+
+<div class="col-md-2 col-xs-12 pull-right master-selection">
+    <img ng-src="{{selection.master.image}}"/>
+    <ui-select ng-model="selection.master" theme="bootstrap">
+        <ui-select-match placeholder="Select a Master">{{$select.selected.name}}</ui-select-match>
+        <ui-select-choices repeat="m in masters">
+            <img class="pull-left" ng-src="{{m.image}}" style="width:32px"/>
+            <div ng-bind-html="m.name | highlight: $select.search"></div>
+            <div class="clearfix"></div>
+        </ui-select-choices>
+    </ui-select>
 </div>
 
 <div class="col-md-2 col-xs-12 pull-right card-stats" ng-include="'app/templates/partial-stats.html'"></div>

@@ -29,20 +29,25 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         resolve: {
             cards: function($http){
                 return $http.get('sources/cards.json').then(function(d){return d.data});
+            },
+            masters: function($http){
+                return $http.get('sources/masters.json').then(function(d){return d.data});
             }
         }
     });
 }])
-.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'growl', 'cards',
-    function($scope, $timeout, $uibModal, $location, localStorageService, growl, cards) {
+.controller('ViewMainCtrl', ['$scope', '$timeout', '$uibModal', '$location', 'localStorageService', 'growl', 'cards', 'masters',
+    function($scope, $timeout, $uibModal, $location, localStorageService, growl, cards, masters) {
 
         var cardUniqueId = "iD";
 
+        $scope.masters = masters;
+        $scope.s = {};
         $scope.cards = angular.copy(cards);
         $scope.costs = _.range(0,10);
         $scope.types = {Minion: 'Minion', Spell: 'Spell', building: 'Building'};
         $scope.cardsById = _.indexBy(cards, cardUniqueId);
-        $scope.selection = [];
+        $scope.selection = {deck: [], master: null};
         $scope.filters = {};
         $scope.wildCardsMax = 2;
         $scope.wildCardsUsed = 0;
@@ -52,7 +57,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          */
         function updateWildCardUsed(){
             //Update Wildcard used number
-            var newGroupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
+            var newGroupBy = _.chain($scope.selection.deck).groupBy('id').mapObject(function(a){return a.length}).value();
             $scope.wildCardsUsed = _.reduce(newGroupBy, function(memo, v){return v-1+memo;}, 0);
         }
 
@@ -77,7 +82,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 totalRange: 0,
                 totalHealth: 0,
                 totalCreatures: 0,
-                totalCards: $scope.selection.length,
+                totalCards: $scope.selection.deck.length,
                 totalRanged: 0,
                 totalFlying: 0,
 
@@ -87,7 +92,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             };
 
             //Update stored for each card in selection
-            $scope.selection.forEach(function(s){
+            $scope.selection.deck.forEach(function(s){
                 var card = $scope.cardsById[s.id];
 
                 //Manacost
@@ -128,7 +133,8 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          * Update page URL when deck changes
          */
         function updateUrl(){
-            $location.search('deck', btoa(_.map($scope.selection, function(v){return v.id.toString()}).join('|')));
+            $location.search('deck', btoa(_.map($scope.selection.deck, function(v){return v.id.toString()}).join('|')));
+            $location.search('master', $scope.selection.master ? $scope.selection.master.id:null);
         }
 
         /**
@@ -178,13 +184,13 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             var id = card[cardUniqueId];
 
             //Group by count
-            var groupBy = _.chain($scope.selection).groupBy('id').mapObject(function(a){return a.length}).value();
+            var groupBy = _.chain($scope.selection.deck).groupBy('id').mapObject(function(a){return a.length}).value();
 
             //Update wildcard number
             var hasMaxWildCard = $scope.wildCardsUsed >= $scope.wildCardsMax;
 
             //Verification before adding the card
-            if($scope.selection.length >= 10){
+            if($scope.selection.deck.length >= 10){
                 growl.error('10 Cards limit reached');
                 return;
             }
@@ -194,13 +200,13 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             }
 
             //Add the card
-            $scope.selection.push({id:id});
+            $scope.selection.deck.push({id:id});
 
             //Update usage of wildcards
             updateWildCardUsed();
 
             //Sort the card list
-            $scope.selection.sort(function(a,b){
+            $scope.selection.deck.sort(function(a,b){
                 a = $scope.cardsById[a.id];
                 b = $scope.cardsById[b.id];
                 if(a.manacost>b.manacost) return 1;
@@ -218,12 +224,17 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          * @param position
          */
         $scope.removeCard = function(position){
-            $scope.selection.splice(position, 1);
+            $scope.selection.deck.splice(position, 1);
             updateWildCardUsed();
             updateUrl();
             updateStats();
         }
 
+        /**
+         * Toggle a filter value in an array
+         * @param property
+         * @param value
+         */
         $scope.toggleFilterArrayValue = function(property, value){
             if( ! $scope.filters[property]){
                 $scope.filters[property] = [value];
@@ -235,11 +246,6 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
                 $scope.filters[property].push(value);
             }
         }
-
-        /**
-         * EVENTS
-         */
-        $scope.$watch('filters', onFilterChange, true);
 
         /**
          * BOOTSTRAP
@@ -255,4 +261,11 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             growl.error('Unable to read passed deck');
             console.error("UNABLE TO READ DECK: " + e);
         }
+
+        /**
+         * EVENTS
+         * (After bootstrap as some of them can trigger change to the URL
+         */
+        $scope.$watch('filters', onFilterChange, true);
+        $scope.$watch('selection.master', updateUrl, true);
     }]);
