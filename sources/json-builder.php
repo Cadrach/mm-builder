@@ -3,6 +3,16 @@ require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
+//Create Client
+$client = new Client([
+    // Base URI is used with relative requests
+    'base_uri' => 'https://minionmasters.gamepedia.com/api.php',
+    // You can set any number of default request options.
+    'timeout'  => 5.0,
+]);
+
+include 'json-builder-masters.inc.php';
+
 //List of keys we track on cards
 $keys = [
     'name',
@@ -79,13 +89,6 @@ $officialCards = collect($officialCards)->keyBy(function($card){return strtolowe
 /**
  * NOW WE UPDATE FROM THE WIKI TO AT LEAST GET IMAGES
  */
-$client = new Client([
-    // Base URI is used with relative requests
-    'base_uri' => 'https://minionmasters.gamepedia.com/api.php',
-    // You can set any number of default request options.
-    'timeout'  => 5.0,
-]);
-
 //Get list of cards
 $response = $client->get('',[
     'query'=> [
