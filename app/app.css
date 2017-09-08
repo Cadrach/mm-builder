@@ -110,6 +110,8 @@ body {
       margin-left: 10px; }
   .navbar .navbar-right {
     font-size: 18px; }
+    .navbar .navbar-right li {
+      cursor: pointer; }
   .navbar .fa {
     float: left;
     position: relative;
