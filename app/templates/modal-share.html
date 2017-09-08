@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <i class="fa fa-fw fa-lg fa-share-alt"></i>&nbsp;Share</a>
+        <i class="fa fa-times pull-right" ng-click="$dismiss()"></i>
+    </h4>
+</div>
+<div class="modal-body">
+    To share your current deck copy the URL below, and paste it anywhere else.
+    <br/>
+    <br/>
+    <input class="form-control" ng-model="url" readonly="readonly" onClick="this.select();"/>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="$dismiss()">Close</button>
+</div>

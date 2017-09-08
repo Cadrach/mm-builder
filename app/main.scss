@@ -43,6 +43,27 @@ $input-border-focus: $btn-primary-border;
 $grid-gutter-width: 10px;
 $screen-md: 800px;
 
+/**
+ * NAVBAR
+ */
+.navbar-default{
+  font-family: Lato !important;
+}
+$navbar-default-bg: $body-bg;
+$navbar-default-color: #fff;
+$navbar-default-brand-color: #fff;
+$navbar-default-link-color: #fff;
+$navbar-default-link-hover-color: $btn-default-border;
+$navbar-border-radius: 0;
+
+/**
+ * MODALS
+ */
+$modal-content-bg: $body-bg;
+$modal-content-border-color: $btn-default-border;
+$modal-header-border-color: $btn-default-border;
+$modal-footer-border-color: $btn-default-border;
+
 @import "../bower_components/normalize-css/normalize.css";
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "../bower_components/angular-motion/dist/angular-motion.min.css";

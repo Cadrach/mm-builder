@@ -74,13 +74,36 @@ body {
   border: 3px solid #35383c;
   border-radius: 5px; }
 
-.divider {
-  background-image: url("images/divider.png");
+.logo {
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  z-index: 2;
+  background-image: url("images/logo2.png");
+  background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center center;
-  width: 200px;
-  height: 13px;
-  margin: auto; }
+  width: 100px;
+  height: 80px; }
+
+.navbar {
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase; }
+  .navbar .navbar-header {
+    font-size: 20px;
+    margin-left: 120px; }
+    .navbar .navbar-header small {
+      font-size: 8px;
+      margin-left: 10px; }
+  .navbar .navbar-right {
+    font-size: 18px; }
+  .navbar .fa {
+    float: left;
+    position: relative;
+    top: -8px; }
 
 .card-cost {
   background-image: url("images/bg-manacost.png");
@@ -93,7 +116,7 @@ body {
 
 .master-selection {
   padding: 20px;
-  margin-top: 17px;
+  margin-top: 10px;
   margin-bottom: 10px;
   text-align: center; }
   .master-selection img {
@@ -129,7 +152,7 @@ body {
   left: -4px; }
 
 .card-stats {
-  padding: 5px; }
+  padding: 15px; }
   .card-stats table {
     margin: 0;
     font-size: 12px; }
@@ -156,6 +179,13 @@ body {
     width: 40px;
     height: 40px;
     line-height: 42px; }
+  .card-stats .divider {
+    background-image: url("images/divider.png");
+    background-size: 100%;
+    background-position: center center;
+    width: 200px;
+    height: 13px;
+    margin: 10px auto; }
 
 .card-filters {
   padding: 10px 5px;

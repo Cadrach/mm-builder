@@ -42,7 +42,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         var cardUniqueId = "iD";
 
         $scope.masters = masters;
-        $scope.s = {};
+        $scope.codeVersion = codeVersion;
         $scope.cards = angular.copy(cards);
         $scope.costs = _.range(0,10);
         $scope.types = {Minion: 'Minion', Spell: 'Spell', building: 'Building'};
@@ -245,6 +245,28 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
             else{
                 $scope.filters[property].push(value);
             }
+        }
+
+        /**
+         * Open help modal
+         */
+        $scope.openModalHelp = function(){
+            $uibModal.open({
+                templateUrl: 'app/templates/modal-help.html',
+            })
+        }
+
+        /**
+         * Open share modal
+         */
+        $scope.openModalShare = function(){
+            var scope = $scope.$new();
+            scope.url = window.location;
+            $uibModal.open({
+                templateUrl: 'app/templates/modal-share.html',
+                size: 'lg',
+                scope: scope
+            })
         }
 
         /**

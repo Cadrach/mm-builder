@@ -1,3 +1,19 @@
+<div class="logo"></div>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <div class="navbar-brand">Deck Builder <small>{{codeVersion}}</small></div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a ng-click="openModalShare()"><i class="fa fa-fw fa-2x fa-share-alt"></i>&nbsp;Share</a></li>
+            <li><a ng-click="openModalHelp()"><i class="fa fa-fw fa-2x fa-question-circle-o"></i>&nbsp;Help</a></li>
+        </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
 <div class="col-md-9 col-xs-12">
     <div class="card-selection">
         <card class="am-fade" ng-repeat="s in selection.deck" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
@@ -64,6 +80,6 @@
     <div class="card-list">
         <card ng-repeat="card in cards|orderBy:'manacost'" value="card" ng-click="selectCard(card)"></card>
         <div class="clearfix"></div>
-        {{cards.length}} Cards
+        <!--{{cards.length}} Cards-->
     </div>
 </div>
