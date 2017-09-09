@@ -3,7 +3,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
+        <div class="navbar-header hidden-xs">
             <div class="navbar-brand">Deck Builder <small>{{codeVersion}}</small></div>
         </div>
         <ul class="nav navbar-nav navbar-right">
@@ -14,7 +14,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="col-md-9 col-xs-12">
+<div class="col-md-9 col-xs-12 pull-left">
     <div class="card-selection">
         <card class="am-fade" ng-repeat="s in selection.deck" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
         <div class="clearfix"></div>
@@ -33,7 +33,7 @@
         </ui-select>
     </div>
 
-    <div ng-include="'app/templates/partial-stats.html'"></div>
+    <div class="hidden-xs" ng-include="'app/templates/partial-stats.html'"></div>
 </div>
 
 <div class="col-md-9 col-xs-12">
@@ -82,4 +82,7 @@
         <div class="clearfix"></div>
         <!--{{cards.length}} Cards-->
     </div>
+    <div class="clearfix"></div>
 </div>
+
+<div class="col-xs-12 visible-xs-block" ng-include="'app/templates/partial-stats.html'"></div>

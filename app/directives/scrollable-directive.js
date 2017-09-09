@@ -3,9 +3,17 @@ angular.module('appMmBuilder.scrollable-directive', [])
     function link(scope, element) {
         function autosize(){
             var e = angular.element(element);
-            e.css('height', 'calc(100vh - ' + (e.offset().top+10) + 'px)');
+            var vh = $( window ).height();
+
+            if(e.offset().top + scope.minHeight > vh){
+                e.css('height', scope.minHeight + 'px');
+            }
+            else{
+                e.css('height', 'calc(100vh - ' + (e.offset().top+10) + 'px)');
+            }
         }
 
+        scope.minHeight = scope.minHeight ? scope.minHeight:200;
         var scrollable = element.mCustomScrollbar(angular.extend({
             theme:"dark"
         }, scope.scrollable));
@@ -30,7 +38,8 @@ angular.module('appMmBuilder.scrollable-directive', [])
         restrict: 'A',
         scope: {
             scrollable: '=',
-            autosizeFromTop: '@'
+            autosizeFromTop: '@',
+            minHeight: '@'
         },
         link: link
     }

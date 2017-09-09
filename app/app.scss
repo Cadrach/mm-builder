@@ -13,7 +13,6 @@ body{
   background: url('images/bg-body.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: Roboto;
-  overflow: hidden;
 }
 
 .popover{
@@ -69,13 +68,18 @@ body{
   text-transform: uppercase;
 
   .navbar-header{
+    float: left;
     font-size: 20px;
     margin-left: 120px;
     small{font-size: 8px; margin-left: 10px;}
   }
   .navbar-right{
+    float: right;
     font-size: 18px;
-    li{cursor: pointer}
+    li{
+      cursor: pointer;
+      float: left !important;
+    }
   }
   .fa{
     float: left;
@@ -205,7 +209,7 @@ body{
 
 .card-list{
   @extend .block;
-  //margin: 30px;
+  margin-bottom: 10px;
   //padding: 10px;
   //width: calc(100% - 60px);
   background-color: #17141a;
@@ -295,4 +299,33 @@ card{
     margin-top: 5px;
   }
   small{font-size: 10px;}
+}
+
+
+/**
+ * ON MOBILES
+ */
+@media (max-width: 768px) {
+  .master-selection{
+    height: 80px;
+    margin-bottom: 0;
+    img{
+      float: left;
+      width: 50px;
+      height: 50px;
+      position: relative;
+      top: -8px;
+    }
+    .ui-select-container{
+      float: left;
+      min-width: calc(100% - 60px);
+      margin-left: 5px;
+    }
+  }
+  .navbar-right{
+    font-size: 10px !important;
+  }
+  .fa{
+    top: 0px !important;
+  }
 }

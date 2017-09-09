@@ -1,8 +1,7 @@
 body {
   background: url("images/bg-body.jpg") no-repeat center center fixed;
   background-size: cover;
-  font-family: Roboto;
-  overflow: hidden; }
+  font-family: Roboto; }
 
 .popover .popover-title {
   color: #fff; }
@@ -103,15 +102,18 @@ body {
   font-weight: 600;
   text-transform: uppercase; }
   .navbar .navbar-header {
+    float: left;
     font-size: 20px;
     margin-left: 120px; }
     .navbar .navbar-header small {
       font-size: 8px;
       margin-left: 10px; }
   .navbar .navbar-right {
+    float: right;
     font-size: 18px; }
     .navbar .navbar-right li {
-      cursor: pointer; }
+      cursor: pointer;
+      float: left !important; }
   .navbar .fa {
     float: left;
     position: relative;
@@ -218,6 +220,7 @@ body {
     top: 2px; }
 
 .card-list {
+  margin-bottom: 10px;
   background-color: #17141a;
   background-position: right bottom;
   background-repeat: no-repeat;
@@ -293,5 +296,29 @@ card {
     margin-top: 5px; }
   .card-popover small {
     font-size: 10px; }
+
+/**
+ * ON MOBILES
+ */
+@media (max-width: 768px) {
+  .master-selection {
+    height: 80px;
+    margin-bottom: 0; }
+    .master-selection img {
+      float: left;
+      width: 50px;
+      height: 50px;
+      position: relative;
+      top: -8px; }
+    .master-selection .ui-select-container {
+      float: left;
+      min-width: calc(100% - 60px);
+      margin-left: 5px; }
+
+  .navbar-right {
+    font-size: 10px !important; }
+
+  .fa {
+    top: 0px !important; } }
 
 /*# sourceMappingURL=app.css.map */
