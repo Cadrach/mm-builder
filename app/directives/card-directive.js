@@ -28,6 +28,17 @@ angular.module('appMmBuilder.card-directive', [])
             scope.width = scope.width ? scope.width:61;
             scope.height = scope.width * scope.ratio;
             scope.fontSize = 12;
+            scope.styles = {};
+
+            function updateStyles(){
+                scope.styles = {
+                    'background-image': 'url(' + scope.card.image + ')',
+                    width: Math.round(scope.width) + 'px',
+                    height: Math.round(scope.height) + 'px',
+                    fontSize: Math.round(scope.fontSize) + 'px',
+                    marginTop: Math.round(scope.height * .19) + 'px'
+                }
+            }
 
             function autoSize(){
                 //try 1 line
@@ -41,6 +52,8 @@ angular.module('appMmBuilder.card-directive', [])
                 scope.height = Math.floor(scope.width * scope.ratio);
                 scope.fontSize = scope.height * 0.16667;
 
+                updateStyles();
+
                 scope.$digest();
             }
 
@@ -49,8 +62,11 @@ angular.module('appMmBuilder.card-directive', [])
                 angular.element($window).bind('resize', autoSize);
                 $timeout(autoSize);
             }
+            else{
+                updateStyles();
+            }
         },
-        restrict: 'E',
+        // restrict: 'E',
         // transclude: true,
         scope: {
             card: '=value',

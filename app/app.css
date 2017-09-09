@@ -227,19 +227,19 @@ body {
   max-height: calc(100vh - ((100vw/10 - 2*8px - 60px/10)*1.18519) - 30px - 60px - 50px);
   overflow-y: auto; }
 
-card {
+card, [card] {
   margin: 0; }
-  card .card-rarity-Regular:before {
+  card .card-rarity-Regular:before, [card] .card-rarity-Regular:before {
     border-color: #7f7f7f; }
-  card .card-rarity-Common:before {
+  card .card-rarity-Common:before, [card] .card-rarity-Common:before {
     border-color: #82b577; }
-  card .card-rarity-Rare:before {
+  card .card-rarity-Rare:before, [card] .card-rarity-Rare:before {
     border-color: #3d77c6; }
-  card .card-rarity-Supreme:before {
+  card .card-rarity-Supreme:before, [card] .card-rarity-Supreme:before {
     border-color: #a055a0; }
-  card .card-rarity-Legendary:before {
+  card .card-rarity-Legendary:before, [card] .card-rarity-Legendary:before {
     border-color: #c0a659; }
-  card > div {
+  card > div, [card] > div {
     background-size: 100%;
     display: block;
     float: left;
@@ -248,7 +248,7 @@ card {
     border: 2px solid #18181e;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
     background-color: #000; }
-    card > div:before {
+    card > div:before, [card] > div:before {
       display: block;
       content: ' ';
       height: calc(100% + 8px);
@@ -257,7 +257,7 @@ card {
       position: relative;
       left: -4px;
       top: -4px; }
-  card .card-name {
+  card .card-name, [card] .card-name {
     position: absolute;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
@@ -266,7 +266,7 @@ card {
     height: 20%;
     width: 100%;
     text-align: center; }
-  card .card-cost {
+  card .card-cost, [card] .card-cost {
     position: absolute;
     top: -19%;
     right: -2px;
