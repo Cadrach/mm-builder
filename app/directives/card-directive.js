@@ -33,14 +33,20 @@ angular.module('appMmBuilder.card-directive', [])
 
             function updateStyles(){
                 scope.styles = {
-                    'background-image': 'url(' + scope.card.image + ')',
                     width: Math.round(scope.width) + 'px',
                     height: Math.round(scope.height) + 'px',
                     fontSize: Math.round(scope.fontSize) + 'px',
                     marginTop: Math.round(scope.height * .19) + 'px'
                 }
+                if(scope.card){
+                    scope.styles['background-image'] = 'url(' + scope.card.image + ')';
+                }
+                else{
+                    scope.card = {rarity: 'placeholder'};
+                }
             }
 
+            //TODO: autosize logic cannot work correctly, must have a parent directive with a controller that apply size to children cards: card-autosizer
             function autoSize(){
                 //try 1 line
                 scope.width = (elmt.parent().width()) / 10 - 17;

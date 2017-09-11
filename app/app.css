@@ -240,6 +240,10 @@ card, [card] {
     border-color: #a055a0; }
   card .card-rarity-Legendary:before, [card] .card-rarity-Legendary:before {
     border-color: #c0a659; }
+  card .card-rarity-placeholder:before, [card] .card-rarity-placeholder:before {
+    border-color: #15142c; }
+  card .card-rarity-placeholder .card-cost, [card] .card-rarity-placeholder .card-cost {
+    display: none; }
   card > div, [card] > div {
     background-size: 100%;
     display: block;

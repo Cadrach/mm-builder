@@ -16,7 +16,8 @@
 
 <div class="col-md-9 col-xs-12 pull-left">
     <div class="card-selection">
-        <card class="am-fade" ng-repeat="s in selection.deck" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
+        <card ng-repeat="s in selection.deck" value="cardsById[s.id]" ng-click="removeCard($index)" auto-size="1"></card>
+        <card ng-repeat="s in selection.remaining" value="null" auto-size="1"></card>
         <div class="clearfix"></div>
     </div>
 </div>

@@ -233,6 +233,10 @@ card,[card]{
   .card-rarity-Supreme:before{border-color: #a055a0;}
   .card-rarity-Legendary:before{border-color: $color-legendary;}
 
+  .card-rarity-placeholder{
+    &:before{border-color: $bgBody};
+    .card-cost{display: none}
+  }
 
   &>div{
     background-size: 100%;

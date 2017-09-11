@@ -46,7 +46,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         $scope.costs = _.range(0,10);
         $scope.types = {Minion: 'Minion', Spell: 'Spell', building: 'Building'};
         $scope.cardsById = _.indexBy(cards, cardUniqueId);
-        $scope.selection = {deck: [], master: null};
+        $scope.selection = {deck: [], master: null, remaining: _.range(0, 10)};
         $scope.filters = {};
         $scope.wildCardsMax = 2;
         $scope.wildCardsUsed = 0;
@@ -132,6 +132,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
          * Update page URL when deck changes
          */
         function updateUrl(){
+            $scope.selection.remaining = _.range(0, 10 - $scope.selection.deck.length)
             $location.search('deck', btoa(_.map($scope.selection.deck, function(v){return v.id.toString()}).join('|')));
             $location.search('master', $scope.selection.master ? $scope.selection.master.id:null);
         }
