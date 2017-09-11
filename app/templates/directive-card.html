@@ -4,7 +4,7 @@
      popover-placement="auto top"
      popover-trigger="'mouseenter'"
      popover-title="{{card.name}}"
-     uib-popover-template="'app/templates/directive-card-popover.html'">
+     uib-popover-template="'app/templates/directive-card-popover.html?v=' + codeVersion">
     <div class="card-name">{{card.name}}</div>
     <div class="card-cost" ng-attr-style="font-size:{{fontSize}}px; line-height:{{height*.38}}px">{{card.manacost}}</div>
     <!--popover-trigger="'mouseenter'"-->

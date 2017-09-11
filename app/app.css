@@ -79,9 +79,10 @@ body {
   background-size: 100%; }
 
 .block, .master-selection, .card-stats, .card-filters, .card-list {
-  background-color: #15142c;
+  background-color: rgba(21, 20, 44, 0.6);
   border: 3px solid #35383c;
-  border-radius: 5px; }
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75); }
 
 .logo {
   position: absolute;

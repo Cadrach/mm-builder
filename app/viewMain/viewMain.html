@@ -33,7 +33,7 @@
         </ui-select>
     </div>
 
-    <div class="hidden-xs" ng-include="'app/templates/partial-stats.html'"></div>
+    <div class="hidden-xs" ng-include="'app/templates/partial-stats.html?v=' + codeVersion"></div>
 </div>
 
 <div class="col-md-9 col-xs-12">
@@ -85,4 +85,4 @@
     <div class="clearfix"></div>
 </div>
 
-<div class="col-xs-12 visible-xs-block" ng-include="'app/templates/partial-stats.html'"></div>
+<div class="col-xs-12 visible-xs-block" ng-include="'app/templates/partial-stats.html?v=' + codeVersion"></div>

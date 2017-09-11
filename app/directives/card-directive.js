@@ -21,7 +21,7 @@
 
 angular.module('appMmBuilder.card-directive', [])
 
-.directive('card', ['$window', '$timeout', function($window, $timeout) {
+.directive('card', ['$window', '$timeout', '$rootScope', function($window, $timeout, $rootScope) {
     return {
         link: function(scope, elmt){
             scope.ratio =  1.185185185185185;
@@ -29,6 +29,7 @@ angular.module('appMmBuilder.card-directive', [])
             scope.height = scope.width * scope.ratio;
             scope.fontSize = 12;
             scope.styles = {};
+            scope.codeVersion = $rootScope.codeVersion;
 
             function updateStyles(){
                 scope.styles = {
@@ -42,25 +43,24 @@ angular.module('appMmBuilder.card-directive', [])
 
             function autoSize(){
                 //try 1 line
-                scope.width = (elmt.parent().width()) / 10 - 16;
+                scope.width = (elmt.parent().width()) / 10 - 17;
 
                 //If width is under 50, work on 2 lines
                 if(scope.width < 61){
-                    scope.width = (elmt.parent().width()) / 5 - 16;
+                    scope.width = (elmt.parent().width()) / 5 - 17;
                 }
 
                 scope.height = Math.floor(scope.width * scope.ratio);
                 scope.fontSize = scope.height * 0.16667;
 
                 updateStyles();
-
-                scope.$digest();
             }
 
             //Observe resize if auto size
             if(scope.autoSize){
                 angular.element($window).bind('resize', autoSize);
                 $timeout(autoSize);
+                $timeout(autoSize, 500);
             }
             else{
                 updateStyles();

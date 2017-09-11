@@ -41,4 +41,8 @@ config(['$locationProvider', '$routeProvider', 'growlProvider', function($locati
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/'});
-}]);
+}]).
+run(['$rootScope', function($rootScope){
+    $rootScope.codeVersion = codeVersion;
+}])
+;
