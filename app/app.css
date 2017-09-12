@@ -204,6 +204,8 @@ body {
     min-height: 34px;
     line-height: 34px;
     margin-left: 5px; }
+  .card-filters .btn-group {
+    margin-left: 5px; }
   .card-filters .checkbox {
     float: left;
     margin: 0;
@@ -212,6 +214,7 @@ body {
       margin-left: -16px;
       top: 7px; }
   .card-filters .form-control {
+    margin-left: 5px;
     position: relative;
     top: 2px; }
 

@@ -45,6 +45,7 @@ angular.module('appMmBuilder.viewMain', ['ngRoute'])
         $scope.cards = angular.copy(cards);
         $scope.costs = _.range(0,10);
         $scope.types = {Minion: 'Minion', Spell: 'Spell', building: 'Building'};
+        $scope.speeds = {Immobile: 0, 'Very Slow': 2, 'Slow': 4, 'Medium': 5, 'Fast': 7, 'Very Fast': 10};
         $scope.targets = _.chain(cards).pluck('targets').unique().filter().value();
         $scope.cardsById = _.indexBy(cards, cardUniqueId);
         $scope.selection = {deck: [], master: null, remaining: _.range(0, 10)};
