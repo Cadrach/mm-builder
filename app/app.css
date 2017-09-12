@@ -161,11 +161,6 @@ body {
       width: 32px;
       margin-right: 10px; }
 
-.card-selection {
-  width: calc(100% + 8px);
-  position: relative;
-  left: -4px; }
-
 .card-stats {
   padding: 15px; }
   .card-stats table {
@@ -252,7 +247,8 @@ card, [card] {
     position: relative;
     border: 2px solid #18181e;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
-    background-color: #000; }
+    background-color: #000;
+    background-repeat: no-repeat; }
     card > div:before, [card] > div:before {
       display: block;
       content: ' ';
