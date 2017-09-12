@@ -51,13 +51,11 @@
             <div class="btn-group btn-group-sm">
                 <div class="btn btn-{{filters.type.indexOf(t)>=0?'primary':'default'}}" ng-repeat="(t,v) in types" ng-click="toggleFilterArrayValue('type', t)">{{v}}s</div>
             </div>
+            <div class="btn-group btn-group-sm">
+                <div class="btn btn-{{filters.targets.indexOf(v)>=0?'primary':'default'}}" ng-repeat="(t,v) in targets" ng-click="toggleFilterArrayValue('targets', v)">{{v}}</div>
+            </div>
         </div>
         <div class="pull-left">
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" ng-model="filters.hitsFlying">Hits&nbsp;Air
-                </label>
-            </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" ng-model="filters.flying">Flying
