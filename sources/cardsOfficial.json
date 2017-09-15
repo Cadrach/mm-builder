@@ -276,7 +276,7 @@
 "description": "Swarmers are fast and have decent damage but low health.",
 "isAOE": "False",
 "count": 3,
-"health": 30,
+"health": 35,
 "attackspeed": 1100,
 "attackDelay": 800,
 "damage": 20,
@@ -2231,5 +2231,28 @@
 "speed": 7,
 "dps": 30,
 "iD": "220"
+},
+{
+"name": "Flightless Dragons",
+"manacost": 4,
+"type": "Minion",
+"rarity": "Common",
+"ImageName": "ClippedDragons",
+"description": "In baby dragon world you play rough. Unfortunately, pissing off your big sister could make her take a bite out of your wing.",
+"isAOE": "False",
+"count": 2,
+"health": 100,
+"attackspeed": 1000,
+"attackDelay": 500,
+"damage": 50,
+"range": 600,
+"isRanged": "False",
+"flying": "False",
+"hitsFlying": "False",
+"unitToSummon": "ClippedDragonWhelp",
+"attackOnlyStationary": "False",
+"speed": 5,
+"dps": 50,
+"iD": "226"
 }
 ]
