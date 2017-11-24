@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "93c25cec8c9000c434f50f573a38f74b",
+    "content-hash": "bbcb3a2fbbc7b5d0e79fa639432f8e74",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -522,6 +522,47 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
+            "name": "tunaabutbul/cloudflare-middleware",
+            "version": "v1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tunaabutbul/cloudflare-middleware.git",
+                "reference": "8dd7c2abe7e3fa0d3efba8eef6ad0a3b8fd95140"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tunaabutbul/cloudflare-middleware/zipball/8dd7c2abe7e3fa0d3efba8eef6ad0a3b8fd95140",
+                "reference": "8dd7c2abe7e3fa0d3efba8eef6ad0a3b8fd95140",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "6.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tuna\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tuna Abutbul",
+                    "email": "tuna.abutbul+github@gmail.com"
+                }
+            ],
+            "description": "Cloudflare Middleware For Guzzle",
+            "keywords": [
+                "Guzzle",
+                "cloudflare",
+                "middleware"
+            ],
+            "time": "2017-10-09T19:04:34+00:00"
         }
     ],
     "packages-dev": [],

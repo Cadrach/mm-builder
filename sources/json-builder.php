@@ -1,15 +1,21 @@
 <?php
+
 require 'vendor/autoload.php';
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\FileCookieJar;
+use Tuna\CloudflareMiddleware;
 
 //Create Client
 $client = new Client([
     // Base URI is used with relative requests
     'base_uri' => 'https://minionmasters.gamepedia.com/api.php',
     // You can set any number of default request options.
-    'timeout'  => 5.0,
+    'timeout'  => 15.0,
+    'cookies' => new FileCookieJar('cookies.txt'),
 ]);
+
+$client->getConfig('handler')->push(CloudflareMiddleware::create());
 
 include 'json-builder-masters.inc.php';
 
@@ -136,6 +142,7 @@ foreach($list as $page){
     //Check card existence in official cards
     $name = strtolower($fieldsFound['name']);
     if( ! isset($officialCards[$name])){
+        continue;
         var_dump($fieldsFound);
         throw new \Exception('Unknow card: ' . $name);
     }

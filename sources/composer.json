@@ -2,6 +2,7 @@
     "require": {
         "guzzlehttp/guzzle": "~6.0",
         "illuminate/support": "^5.2",
-        "intervention/image": "^2.4"
+        "intervention/image": "^2.4",
+        "tunaabutbul/cloudflare-middleware": "^1.1"
     }
 }
